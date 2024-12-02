@@ -8,7 +8,7 @@ const Circles = () => {
   return (
     <Stack
       width={"100%"}
-      height={"100vh"}
+      height={"80vh"}
       sx={{
         backgroundImage: `url(${circle.src})`,
         backgroundSize: "cover",

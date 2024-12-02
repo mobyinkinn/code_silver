@@ -1,12 +1,12 @@
-"use client"
+"use client";
 
 import React, { useRef, useState } from "react";
-import left from "../assets/Circleleftbottom.png";
+import left from "../assets/18.png";
 import { Box, Stack, Typography } from "@mui/material";
 import Slider from "react-slick";
-import banner from "../assets/7.jpg";
-import banner2 from "../assets/8.jpg";
-import banner3 from "../assets/9.png";
+import banner from "../assets/15.jpg";
+import banner2 from "../assets/16.jpg";
+import banner3 from "../assets/17.jpg";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
@@ -28,53 +28,47 @@ const hoverStyle = {
 
 const bannerImages = [banner, banner2, banner3];
 
-const ExploreCat = () => {
-  const [arrowStyle1, setArrowStyle1] = useState(normalStyle);
-  const [arrowStyle2, setArrowStyle2] = useState(normalStyle);
-  const [currentSlide, setCurrentSlide] = useState(0); // Tracks current slide
-  const CatsliderRef = useRef(null);
-
-  const settings = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    arrows: false,
-    slidesToShow: 2.5,
-    slidesToScroll: 1,
-    beforeChange: (oldIndex, newIndex) => setCurrentSlide(newIndex), // Update progress bar
-  };
-
-  const handleNext = () => {
-    CatsliderRef.current.slickNext();
-  };
-
-  const handlePrev = () => {
-    CatsliderRef.current.slickPrev();
-  };
-
-  // Calculate the progress bar width
-  const progressBarWidth = ((currentSlide + 1) / bannerImages.length) * 100;
-
+const Tradition = () => {
+    const [arrowStyle1, setArrowStyle1] = useState(normalStyle);
+    const [arrowStyle2, setArrowStyle2] = useState(normalStyle);
+    const TraditionsliderRef = useRef(null);
+     const settings = {
+       dots: false,
+       infinite: true,
+       speed: 500,
+       arrows: false,
+       slidesToShow: 3,
+       slidesToScroll: 1,
+     };
   return (
-    <Stack
-      width={"100%"}
-      direction={"row"}
-      position={"relative"}
-      pt={5}
-      height={"100%"}
-    >
-      <Image src={left.src} fill objectFit="contain" objectPosition="left" />
+    <Stack width={"100%"} direction={"row"} position={"relative"} pt={5}>
+      <Box
+        position="absolute"
+        top={0}
+        left={0}
+        width="100%"
+        height="100%"
+        sx={{
+          backgroundImage: `url(${left.src})`,
+          backgroundSize: "40%",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "top left",
+        }}
+      />
       <Stack
-        width={"33%"}
+        width={"40%"}
         bgcolor={"#ebebeb"}
-        justifyContent={"center"}
+        justifyContent={"end"}
         height={"100vh"}
       >
-        <Typography fontSize={"40px"} pl={5}>
-          Explore
+        <Typography fontSize={"35px"} pl={5}>
+          Rooted in
         </Typography>
-        <Typography fontSize={"53px"} pl={5} lineHeight={1}>
-          Our Categories
+        <Typography fontSize={"53px"} pl={5} lineHeight={1.2}>
+          Tradition
+        </Typography>
+        <Typography fontSize={"42px"} pl={5}>
+          Inspired by Journeys
         </Typography>
         <Box
           mt={2}
@@ -85,12 +79,19 @@ const ExploreCat = () => {
             bgcolor: "black",
           }}
         />
-        <Typography p={"16px 40px"} fontSize={"20px"}>
-          Curated to provide unmatched sophistication
+        <Typography p={"16px 40px"} fontSize={"15px"} textAlign={"justify"}>
+          At Code Silver, our story is as timeless as the craft we cherish. Born
+          in Jaipur, India and shaped by its vibrant heritage, our creations are
+          a testament to the artistry and culture that define us. Each piece
+          carries the essence of tradition, inspired by countless journeys
+          across the globe that enrich our vision. &nbsp; <br/> <br/> For us, it’s not just
+          about where we come from or where we’re headed it’s about the beauty
+          we discover along the way. Ready to explore the journey of Code
+          Silver?
         </Typography>
       </Stack>
-      <Stack width={"67%"} position={"relative"} height={"100vh"}>
-        <Slider ref={CatsliderRef} {...settings}>
+      <Stack width={"60%"} position={"relative"} height={"100vh"}>
+        <Slider ref={TraditionsliderRef} {...settings}>
           {bannerImages.map((img, index) => (
             <Stack
               key={index}
@@ -121,7 +122,7 @@ const ExploreCat = () => {
                 backgroundColor: "transparent",
               },
             }}
-            onClick={handlePrev}
+            onClick={() => TraditionsliderRef.current.slickNext()}
           >
             <IoIosArrowBack
               style={arrowStyle1}
@@ -148,7 +149,7 @@ const ExploreCat = () => {
                 backgroundColor: "transparent",
               },
             }}
-            onClick={handleNext}
+            onClick={() => TraditionsliderRef.current.slickNext()}
           >
             <IoIosArrowForward
               style={arrowStyle2}
@@ -157,29 +158,9 @@ const ExploreCat = () => {
             />
           </Stack>
         </Stack>
-
-        {/* Progress Bar */}
-        <Box
-          position="absolute"
-          bottom="-3%"
-          left="50%"
-          width="90%"
-          height="2px"
-          bgcolor="lightgray"
-          sx={{ transform: "translateX(-50%)" }}
-        >
-          <Box
-            height="100%"
-            bgcolor="black"
-            sx={{
-              width: `${progressBarWidth}%`,
-              transition: "width 0.5s ease",
-            }}
-          />
-        </Box>
       </Stack>
     </Stack>
   );
 };
 
-export default ExploreCat;
+export default Tradition;

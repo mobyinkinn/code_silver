@@ -67,19 +67,6 @@ const TwoBannerSlider = () => {
     slidesToScroll: 1,
   };
   return (
-    // <Stack
-    //     width={"100%"}
-    //     height={"100vh"}
-    //     sx={{
-    //       backgroundImage: `url(${banner.src})`,
-    //       backgroundSize: "cover",
-    //       backgroundPosition: "center center",
-    //     }}
-    //     justifyContent={"center"}
-    //     gap={"10px"}
-    //   >
-    //     <Navbar/>
-    //   </Stack>
     <Stack width={"100%"} position={"relative"} gap={1}>
       <Slider ref={TwosliderRef} {...settings}>
         {bannerImages.map((img, index) => (
