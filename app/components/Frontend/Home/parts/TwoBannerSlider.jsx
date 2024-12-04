@@ -90,17 +90,11 @@ const TwoBannerSlider = () => {
               gap="10px"
               sx={{ color: "white" }}
               pl={4}
+              pb={2}
               //   top={"40%"}
               //   left={"30%"}
             >
               <Typography fontSize={"60px"}>{img.title}</Typography>
-              {/* <Box
-                sx={{
-                  content: "''",
-                  height: "1px",
-                  bgcolor: "white",
-                }}
-              /> */}
               <Typography fontSize={"23px"} pl={0.5}>
                 {img.Desc}
               </Typography>

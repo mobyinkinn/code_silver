@@ -58,7 +58,7 @@ const Tradition = () => {
       <Stack
         width={"40%"}
         bgcolor={"#ebebeb"}
-        justifyContent={"end"}
+        justifyContent={"center"}
         height={"100vh"}
       >
         <Typography fontSize={"35px"} pl={5}>

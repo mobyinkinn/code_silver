@@ -145,7 +145,7 @@ const Footer = () => {
                 spacing={2}
                 width={"25%"}
                 ml={"51px"}
-                borderRight={"1px solid white"}
+                borderRight={el.heading!=="Contact Us"?"1px solid white":""}
               >
                 {/* Heading */}
                 <Stack>

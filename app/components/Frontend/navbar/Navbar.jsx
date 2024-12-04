@@ -218,10 +218,10 @@ export default function Navbar() {
         zIndex={"100"}
         top={"0"}
       >
-        <Box sx={{ display: "flex" }} width={"50%"} justifyContent={"center"}>
+        <Box sx={{ display: "flex" }} width={"44%"} justifyContent={"center"}>
           {navData.map((el, i) => {
             return (
-              <Stack key={i}>
+              <Stack key={i} justifyContent={"center"}>
                 <Stack direction={"row"} gap={"2px"} alignItems={"center"}>
                   <Link
                     className="nav-link"
@@ -242,7 +242,7 @@ export default function Navbar() {
                       {el.name}
                     </Typography>
                   </Link>
-                  <Typography color="white">|</Typography>
+                  {el.id !== 4 ? <Typography color="white">|</Typography> : ""}
                 </Stack>
 
                 {/* <Fade in={showSubRoutes} easing="enter"> */}
@@ -297,13 +297,11 @@ export default function Navbar() {
             );
           })}
         </Box>
-        <Box width={"10vw"} height={"100%"} position={"relative"}>
+        <Box width={"10%"}>
           <Image
             src={logo}
             alt="Sky Textiles"
-            fill
-            objectFit="cover"
-            style={{ cursor: "pointer" }}
+            style={{ cursor: "pointer", width: "100%", height: "100px" }}
             onClick={() => {
               router.push("/");
             }}
@@ -314,9 +312,14 @@ export default function Navbar() {
           <PiShoppingBagOpenDuotone size={25} />
           <IoBagOutline size={23} />
         </Stack> */}
-        <Stack direction={"row"} gap={2} width={"35%"} justifyContent={"end"}>
+        <Stack direction={"row"} gap={2} width={"46%"} justifyContent={"end"} pr={2}>
           <Box position="relative">
-            <IoSearchOutline size={25} onClick={handleSearchClick} color="white"/>
+            <IoSearchOutline
+              size={25}
+              onClick={handleSearchClick}
+              color="white"
+              cursor={"pointer"}
+            />
 
             {showSearch && (
               <Box
@@ -327,11 +330,12 @@ export default function Navbar() {
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  width: "250px",
+                  width: "260px",
                   height: "35px",
+                  zIndex: -1,
                   backgroundColor: "transparent",
+                  border: "1px solid white",
                   borderRadius: "20px",
-                  boxShadow: "0 0 5px rgba(0,0,0,0.1)",
                   transition: "all 0.3s ease-in-out",
                 }}
               >
@@ -340,18 +344,24 @@ export default function Navbar() {
                     width: "100%",
                     paddingLeft: "20px",
                     height: "100%",
+                    color: "white", // Ensures the input text color is white
+                    "&::placeholder": {
+                      color: "white", // Changes the placeholder text color to white
+                      opacity: 1, // Ensures the placeholder is fully visible
+                    },
                   }}
                   placeholder="Search..."
                   autoFocus
                 />
+
                 <IconButton onClick={handleSearchClick} sx={{ padding: "5px" }}>
                   <IoSearchOutline size={25} />
                 </IconButton>
               </Box>
             )}
           </Box>
-          <PiShoppingBagOpenDuotone size={25} color="white"/>
-          <IoBagOutline size={23} color="white"/>
+          <PiShoppingBagOpenDuotone size={25} color="white" />
+          <IoBagOutline size={23} color="white" />
         </Stack>
         {/* <button
           style={{

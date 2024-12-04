@@ -194,6 +194,7 @@ import Slider from "react-slick";
 import banner from "../assets/22.png";
 import banner1 from "../assets/10.jpg";
 import Designslider from "./Designslider";
+import { DarkGreenButtonSmall } from "@/app/styledcomponents/Button";
 const DesignStudio = () => {
 
   return (
@@ -238,6 +239,9 @@ const DesignStudio = () => {
           Intricate Craftsmanship
         </Typography>
 
+        <Stack p="0 40px">
+          <DarkGreenButtonSmall style={{fontSize:"16px"}}>Know More</DarkGreenButtonSmall>
+        </Stack>
         {/* <Box position="relative" mt={4} overflow="visible">
           <Slider ref={DesisliderRef} {...settings}>
             {bannerImages.map((img, index) => (
