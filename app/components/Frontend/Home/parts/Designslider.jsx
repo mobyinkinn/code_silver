@@ -31,8 +31,10 @@ const Designslider = () => {
     dots: false, // Add dots for debugging
     infinite: true,
     speed: 500,
-    slidesToShow: 3.5,
+    centerMode: true,
+    slidesToShow: 3.2,
     slidesToScroll: 1,
+    centerPadding: "40px",
     arrows: false,
     rtl: false,
   };

@@ -56,7 +56,7 @@ const Banner = () => {
     //     <Navbar/>
     //   </Stack>
     <Stack width={"100%"}>
-      <Navbar />
+      <Navbar color={"transparent"} />
 
       <Slider ref={sliderRef} {...settings}>
         {bannerImages.map((img, index) => (

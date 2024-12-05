@@ -37,8 +37,10 @@ const Tradition = () => {
        infinite: true,
        speed: 500,
        arrows: false,
-       slidesToShow: 3,
+       centerMode: true,
+       slidesToShow: 2.2,
        slidesToScroll: 1,
+       centerPadding: "40px",
      };
   return (
     <Stack width={"100%"} direction={"row"} position={"relative"} pt={5}>

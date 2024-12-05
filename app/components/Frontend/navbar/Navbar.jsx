@@ -174,7 +174,7 @@ const navData = [
   },
 ];
 
-export default function Navbar() {
+export default function Navbar({ color }) {
   const [showNav, setShowNav] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [showSubRoutes, setShowSubRoutes] = useState(false);
@@ -214,7 +214,7 @@ export default function Navbar() {
         alignItems={"center"}
         padding={"15px 0"}
         position={"absolute"}
-        backgroundColor={"transparent"}
+        backgroundColor={color}
         zIndex={"100"}
         top={"0"}
       >
@@ -312,7 +312,13 @@ export default function Navbar() {
           <PiShoppingBagOpenDuotone size={25} />
           <IoBagOutline size={23} />
         </Stack> */}
-        <Stack direction={"row"} gap={2} width={"46%"} justifyContent={"end"} pr={2}>
+        <Stack
+          direction={"row"}
+          gap={2}
+          width={"46%"}
+          justifyContent={"end"}
+          pr={2}
+        >
           <Box position="relative">
             <IoSearchOutline
               size={25}
