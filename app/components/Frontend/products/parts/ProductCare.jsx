@@ -1,6 +1,6 @@
 import { Head1 } from '@/app/styledcomponents/Headings'
 import { ParaNormal } from '@/app/styledcomponents/Para';
-import { Box, Stack } from '@mui/material'
+import { Box, Button, Stack, TextField } from '@mui/material'
 import { BiLogoGmail } from "react-icons/bi";
 import { MdWifiCalling3 } from "react-icons/md";
 import { FaWhatsapp } from "react-icons/fa";
@@ -84,15 +84,55 @@ const ProductCare = () => {
         alignItems={"center"}
         justifyContent={"center"}
         height={"100%"}
+        gap={1}
       >
         <Head1 style={{ fontSize: "1rem" }}>Customer Reviews</Head1>
-        <Stack direction={"row"}>
+        <Stack direction={"row"} gap={1}>
+          <FaRegStar />
           <FaRegStar />
           <FaRegStar />
           <FaRegStar />
           <FaRegStar />
         </Stack>
-        
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            backgroundColor: "#ffffff",
+            borderRadius: "25px",
+            overflow: "hidden",
+            width: "300px",
+            height: "35px",
+            boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
+          }}
+        >
+          <TextField
+            placeholder="Write a Review"
+            variant="standard"
+            InputProps={{
+              disableUnderline: true,
+              style: { padding: "0 15px", fontSize: "16px", color: "#bbb" },
+            }}
+            sx={{
+              flex: 1,
+              backgroundColor: "transparent",
+            }}
+          />
+          <Button
+            sx={{
+              backgroundColor: "#000",
+              color: "#fff",
+              borderRadius: "0",
+              padding: "0 20px",
+              height: "100%",
+              "&:hover": {
+                backgroundColor: "#333",
+              },
+            }}
+          >
+            Done
+          </Button>
+        </Box>
       </Stack>
     </Stack>
   );

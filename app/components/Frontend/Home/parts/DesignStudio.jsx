@@ -193,9 +193,13 @@ import Slider from "react-slick";
 // import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import banner from "../assets/22.png";
 import banner1 from "../assets/10.jpg";
+import banner2 from "../assets/12.jpg";
+import banner3 from "../assets/13.jpg";
 import Designslider from "./Designslider";
 import { DarkGreenButtonSmall } from "@/app/styledcomponents/Button";
 const DesignStudio = () => {
+
+  const bannerImages = [banner3, banner2, banner1, banner3];
 
   return (
     <Stack width="100%" position="relative" direction={"row"} pt={8}>
@@ -240,7 +244,9 @@ const DesignStudio = () => {
         </Typography>
 
         <Stack p="0 40px">
-          <DarkGreenButtonSmall style={{fontSize:"16px"}}>Know More</DarkGreenButtonSmall>
+          <DarkGreenButtonSmall style={{ fontSize: "16px" }}>
+            Know More
+          </DarkGreenButtonSmall>
         </Stack>
         {/* <Box position="relative" mt={4} overflow="visible">
           <Slider ref={DesisliderRef} {...settings}>
@@ -258,7 +264,15 @@ const DesignStudio = () => {
           </Slider>
         </Box> */}
       </Stack>
-      <Designslider />
+      <Designslider
+        bannerImages={bannerImages}
+        position={"absolute"}
+        width={"70%"}
+        slidesToShow={3.2}
+        bottom={"65%"}
+        padding={"40px"}
+        paddinginner={0}
+      />
     </Stack>
   );
 };
