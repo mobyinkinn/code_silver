@@ -1,8 +1,11 @@
+"use client";
+
 import { Button, Stack, Typography } from "@mui/material";
 import img from "./assets/lakshmiCharan.png";
 import Image from "next/image";
 import { CiCircleChevDown } from "react-icons/ci";
 import { TiSocialInstagramCircular } from "react-icons/ti";
+import ReactImageMagnify from "@blacklab/react-image-magnify";
 
 const productData = {
   image: img,
@@ -23,10 +26,29 @@ const productData = {
 
 export default function ProductItem() {
   return (
-    <Stack margin={"40px"} marginTop={"100px"} direction="row">
+    <Stack direction="row">
       <Stack width={"50%"} gap={"10px"} height={"140vh"}>
         <Stack position={"relative"} width={"100%"} height={"90vh"}>
-          <Image src={productData.image} alt="" fill objectFit="cover" />
+          <ReactImageMagnify
+            imageProps={{
+              src: productData.image.src,
+              isFluidWidth: true,
+              alt: productData.name,
+            }}
+            magnifiedImageProps={{
+              src: productData.image.src,
+              width: 1200,
+              height: 1200,
+            }}
+            magnifyContainerProps={{
+              height: 700,
+              width: 700,
+            }}
+            portalProps={{
+              horizontalOffset: 10,
+            }}
+          />
+          {/* <Image src={productData.image} alt="" fill objectFit="cover" /> */}
         </Stack>
         <Stack direction={"row"} gap={"10px"} width={"100%"} height={"40vh"}>
           <Stack position={"relative"} width={"50%"} height={"40vh"}>
@@ -168,6 +190,44 @@ export default function ProductItem() {
               Explicabo quidem fugiat aperiam veritatis sed, itaque quibusdam
               provident. Delectus amet aliquam minus, totam hic architecto
               commodi, eos qui eius dolor possimus.
+            </Typography>
+          </Stack>
+          <Stack>
+            <Typography fontSize="1.4rem">Product Care</Typography>
+            <Stack
+              style={{
+                height: "1px",
+                width: "40%",
+                backgroundColor: "#000",
+                marginBottom: "15px",
+              }}
+            ></Stack>
+            <Typography>
+              1.)&nbsp;&nbsp;&nbsp;&nbsp; Lorem ipsum dolor sit, amet
+              consectetur adipisicing elit.
+            </Typography>
+            <Typography>
+              2.)&nbsp;&nbsp;&nbsp;&nbsp; provident. Delectus amet aliquam
+              minus, totam hic architecto
+            </Typography>
+          </Stack>
+          <Stack>
+            <Typography fontSize="1.4rem">Shipping & Delivery</Typography>
+            <Stack
+              style={{
+                height: "1px",
+                width: "40%",
+                backgroundColor: "#000",
+                marginBottom: "15px",
+              }}
+            ></Stack>
+            <Typography>
+              1.)&nbsp;&nbsp;&nbsp;&nbsp; Lorem ipsum dolor sit, amet
+              consectetur adipisicing elit.
+            </Typography>
+            <Typography>
+              2.)&nbsp;&nbsp;&nbsp;&nbsp; provident. Delectus amet aliquam
+              minus, totam hic architecto
             </Typography>
           </Stack>
         </Stack>

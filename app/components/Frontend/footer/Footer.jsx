@@ -123,8 +123,9 @@ const Footer = () => {
               flexWrap={"wrap"}
               alignItems={"center"}
             >
-              {icon.map((d) => (
+              {icon.map((d, i) => (
                 <Stack
+                  key={i}
                   justifyContent={"center"}
                   alignItems={"center"}
                   width={"30px"}
@@ -145,7 +146,9 @@ const Footer = () => {
                 spacing={2}
                 width={"25%"}
                 ml={"51px"}
-                borderRight={el.heading!=="Contact Us"?"1px solid white":""}
+                borderRight={
+                  el.heading !== "Contact Us" ? "1px solid white" : ""
+                }
               >
                 {/* Heading */}
                 <Stack>
@@ -176,7 +179,12 @@ const Footer = () => {
             ))}
           </Stack>
         </Stack>
-        <Typography color="white" textAlign={"center"}fontSize={"15px"} mt={"30px"}>
+        <Typography
+          color="white"
+          textAlign={"center"}
+          fontSize={"15px"}
+          mt={"30px"}
+        >
           © 2024, Copyright Code Silver
         </Typography>
       </Stack>
