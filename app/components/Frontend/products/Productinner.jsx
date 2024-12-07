@@ -6,7 +6,6 @@ import Circles from "../Home/parts/Circles";
 import ProductItem from "./parts/ProductItem";
 import BasicBreadcrumbs from "./parts/BreadCrumbs";
 import ProductCare from "./parts/ProductCare";
-import ProductItem from "./parts/ProductItem";
 import Designslider from "../Home/parts/Designslider";
 import banner1 from "./parts/assets/2.png";
 import banner2 from "./parts/assets/3.png";
