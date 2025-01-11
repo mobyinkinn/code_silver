@@ -31,7 +31,7 @@ export default function BasicBreadcrumbs() {
         <Link
           underline="hover"
           color="inherit"
-          href="/material-ui/getting-started/installation/"
+          href="/collections/BestSellers"
           style={{ fontSize: "12px" }}
         >
           Religious Collection

@@ -61,26 +61,26 @@ export default function ProductItem({ name }) {
       </Stack>
       <Stack width={"45%"}>
         <Stack padding={"10px 10px 10px 60px"} gap={"20px"}>
-          <Typography fontSize={"1.7rem"} fontWeight={"400"}>
+          <Typography fontSize={"1.7rem"} fontWeight={500}>
             {name}
           </Typography>
           <Stack
             style={{
-              height: "2px",
+              height: "1px",
               width: "60%",
-              backgroundColor: "#ddd",
+              backgroundColor: "#000000",
               position: "relative",
-              right: "40px",
+              right: "60px",
             }}
           ></Stack>
           <Typography
             sx={{
               paddingBottom: "10px",
-              borderBottom: "2px solid #ddd",
+              borderBottom: "1px solid #000",
             }}
           >
             MRP{" "}
-            <span style={{ fontSize: "1.4rem", fontWeight: "bold" }}>
+            <span style={{ fontSize: "1.4rem", fontWeight: 400 }}>
               ₹ {productData.price}/-
             </span>{" "}
             inclusive of all taxes
