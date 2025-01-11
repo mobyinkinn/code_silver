@@ -227,7 +227,7 @@ const DesignStudio = () => {
         }}
       ></Stack>
       <Stack width="60%" height="100vh" bgcolor="#ebebeb" pt={3}>
-        <Typography fontSize="45px" pl={5}>
+        <Typography fontSize="55px" pl={5}>
           The Design Studio
         </Typography>
         <Box

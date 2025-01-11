@@ -20,6 +20,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { useRouter } from "next/navigation";
 
 const normalStyle = {
   height: "20px",
@@ -57,6 +58,7 @@ const TwoBannerSlider = () => {
   const [arrowStyle1, setArrowStyle1] = useState(normalStyle);
   const [arrowStyle2, setArrowStyle2] = useState(normalStyle);
   const TwosliderRef = useRef(null);
+  const router = useRouter();
 
   const settings = {
     dots: false,
@@ -71,14 +73,21 @@ const TwoBannerSlider = () => {
       <Slider ref={TwosliderRef} {...settings}>
         {bannerImages.map((img, index) => (
           <Stack
+          
             key={index}
             width="100vw"
             height="100vh"
+            onClick={() =>
+              router.push(
+                `/collections/${img.title}`
+              )
+            }
             sx={{
               backgroundImage: `url(${img.img.src})`, // Directly use the image path
               backgroundSize: "cover",
               backgroundPosition: "center center",
               display: "flex",
+              cursor: "pointer",
             }}
           >
             <Stack

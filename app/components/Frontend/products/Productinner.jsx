@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import Navbar from "../navbar/Navbar";
 import Footer from "../footer/Footer";
@@ -11,10 +12,12 @@ import banner1 from "./parts/assets/2.png";
 import banner2 from "./parts/assets/3.png";
 import banner3 from "./parts/assets/4.png";
 import banner4 from "./parts/assets/5.png";
-import { Head1 } from "@/app/styledcomponents/Headings";
 import YouMayAlsoLike from "./parts/YouMayAlsoLike";
+import { useParams } from "next/navigation";
 
 const Productinner = () => {
+   const { name } = useParams();
+    const decodedTitle = decodeURIComponent(name);
 const bannerImages = [
   {
     id: 1,
@@ -45,8 +48,10 @@ const bannerImages = [
     <Stack>
       <Navbar color={"black"} />
       <BasicBreadcrumbs />
-      <ProductItem />
-      <ProductCare />
+      <ProductItem name={decodedTitle} />
+      <Stack alignItems={"center"}>
+        <ProductCare />
+      </Stack>
       <YouMayAlsoLike
         bannerImages={bannerImages}
         width={"100%"}

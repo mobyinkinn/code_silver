@@ -1,6 +1,8 @@
 import { Stack, Typography } from "@mui/material";
+import { useRouter } from "next/navigation";
 
-export default function ProductItem({ product }) {
+export default function ProductItem({ product, }) {
+  const router = useRouter();
   console.log(product);
   return (
     <Stack
@@ -8,6 +10,7 @@ export default function ProductItem({ product }) {
       marginBottom={"30px"}
       alignItems={"center"}
       gap={"10px"}
+      onClick={() => router.push(`/products/${product.name}`)}
     >
       <Stack
         sx={{

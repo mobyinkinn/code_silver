@@ -49,7 +49,7 @@ const YouMayAlsoLike = ({
 
   return (
     <>
-      <Head1 style={{ padding: "10px 0" }}>You May Also Like These</Head1>
+      <Head1 style={{ padding: "35px 0", fontWeight:600 }}>You May Also Like These</Head1>
       <Stack
         sx={{
           position: { position },
@@ -59,7 +59,7 @@ const YouMayAlsoLike = ({
           height: "100%",
         }}
       >
-        <Box mt={2}>
+        <Box>
           <Slider ref={DesisliderRef} {...settings}>
             {bannerImages.map((img, index) => (
               <>
@@ -84,9 +84,9 @@ const YouMayAlsoLike = ({
                     direction={"row"}
                     alignItems={"center"}
                     justifyContent={"space-between"}
-                    p={"2px 5px"}
+                    p={"2px 15px"}
                   >
-                    <Head1 style={{ fontSize: "1rem" }}>{img.title}</Head1>
+                    <Head1 style={{ fontSize: "0.9rem", fontWeight:400 }}>{img.title}</Head1>
                     <ParaNormal style={{ fontSize: "1rem" }}>
                       ₹ {img.price}
                     </ParaNormal>

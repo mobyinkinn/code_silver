@@ -112,7 +112,7 @@ const Footer = () => {
         justifyContent={"end"}
         p={"60px 40px 40px 40px"}
       >
-        <Stack direction={"row"} gap={"10px"}>
+        <Stack direction={"row"} gap={"10px"} justifyContent={"center"}>
           <Stack width={"20%"} pl={1} gap={2} borderRight={"1px solid white"}>
             <Typography color="white" fontSize={"15px"} fontWeight={"bold"}>
               Find us on
@@ -139,13 +139,13 @@ const Footer = () => {
               <Typography color="white">info@codesilver.in</Typography>
             </Stack>
           </Stack>
-          <Stack width={"75%"} direction={"row"}>
+          <Stack width={"72%"} direction={"row"}>
             {data.map((el, index) => (
               <Stack
                 key={index}
                 spacing={2}
                 width={"25%"}
-                ml={"51px"}
+                ml={"31px"}
                 borderRight={
                   el.heading !== "Contact Us" ? "1px solid white" : ""
                 }
@@ -166,7 +166,7 @@ const Footer = () => {
                   {el.items.map((item, idx) => (
                     <Typography
                       key={idx}
-                      fontSize={"13px"}
+                      fontSize={"15px"}
                       color="white"
                       sx={{ cursor: "pointer" }}
                       _hover={{ color: "#FB5457" }}

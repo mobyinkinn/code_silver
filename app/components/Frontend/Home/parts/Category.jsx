@@ -10,7 +10,7 @@ const Category = () => {
     {
       id: 1,
       Img: banner,
-      title: "Home & decor",
+      title: "Home & Decor",
     },
     {
       id: 2,
@@ -55,8 +55,10 @@ const Category = () => {
             p={"0 30px"}
           >
             <Typography
-              fontSize={"60px"}
-              width={d.id === 2 || d.id === 4 ? "438px" : "none"}
+              fontSize={"70px"}
+              letterSpacing={1}
+              lineHeight={1.3}
+              width={d.id === 2 || d.id === 4 ? "600px" : "none"}
               textAlign={"center"}
             >
               {d.title}

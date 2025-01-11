@@ -60,13 +60,14 @@ const Tradition = () => {
       <Stack
         width={"40%"}
         bgcolor={"#ebebeb"}
-        justifyContent={"center"}
+        justifyContent={"flex-end"}
         height={"100vh"}
+        pb={3}
       >
-        <Typography fontSize={"35px"} pl={5}>
+        <Typography fontSize={"38px"} pl={5}>
           Rooted in
         </Typography>
-        <Typography fontSize={"53px"} pl={5} lineHeight={1.2}>
+        <Typography fontSize={"83px"} pl={5} lineHeight={1.2}>
           Tradition
         </Typography>
         <Typography fontSize={"42px"} pl={5}>

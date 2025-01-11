@@ -91,7 +91,7 @@ const productData = [
   },
 ];
 
-export default function ProductList() {
+export default function ProductList({ title }) {
   return (
     <Stack padding={"30px"} gap={"20px"}>
       <Stack direction={"row"} justifyContent={"space-between"}>

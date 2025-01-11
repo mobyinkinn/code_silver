@@ -41,3 +41,12 @@ body {
 .nav-link:hover {
   color: #fb5457;
 }
+
+
+@font-face {
+  font-family: "Euclid Flex";
+  src: url("/fonts/EuclidFlex-Regular.woff2") format("woff2"),
+       url("/fonts/EuclidFlex-Regular.woff") format("woff");
+  font-weight: 100;
+  font-style: normal;
+}
