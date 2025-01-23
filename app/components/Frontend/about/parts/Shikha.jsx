@@ -1,0 +1,55 @@
+import { Stack, Typography } from "@mui/material";
+import dukaan from "./assets/shikha.png";
+
+export default function Shikha() {
+  return (
+    <Stack direction="row" backgroundColor="#ededed">
+      <Stack width="50%" gap={"10px"} alignItems={"end"} padding="40px 60px">
+        <Typography fontSize="2rem">SHIKHA DURLABHJI,</Typography>
+        <Typography fontSize="1.6rem">FOUNDER OF CODE SILVER</Typography>
+        <Typography fontSize="0.8rem" textAlign={"right"}>
+          SHIKHA DURLABHJI, THE VISIONARY FOUNDER OF CODE SILVER, TRANSFORMED
+          HER PASSION FOR DESIGN AND CRAFTS- MANSHIP INTO A BRAND SYNONYMOUS
+          WITH ELEGANCE AND MODERNITY. LAUNCHED ON SEPTEMBER 1, 2010, CODE
+          SILVER HAS REDEFINED THE ART OF SILVER GIFTING AND DECOR WITH ITS
+          BESPOKE CREATIONS THAT BLEND TIMELESS ART- ISTRY WITH CONTEMPORARY
+          APPEAL. THE BRAND OFFERS A WIDE RANGE OF DISTINCTIVE PRODUCTS,
+          INCLUDING LAXMI CHARANS, CUSTOMIZED LUGGAGE TAGS, KEYRINGS, NAME
+          FRAMES, TEA LIGHT HOLDERS TO NAME A FEW AND EXCLUSIVE COLLECTIONS FOR
+          HOME DECOR, RELIGIOUS PURPOSES, FESTIVE, WEDDING, AND CORPORATE
+          GIFTING. KNOWN FOR ITS IMPECCABLE SERVICE AND ATTENTION TO DETAIL
+          UNDER SHIKHA'S SUPERVISION, CODE SILVER ENSURES EVERY PIECE REFLECTS
+          SOPHISTICATION AND THOUGHTFULNESS.
+        </Typography>
+        <Typography fontSize="0.8rem" textAlign={"right"}>
+          SHIKHA'S JOURNEY BEGAN WITH HER EDUCATION AT MAHARAJA SAWAI MAN SINGH
+          VIDYALAYA, JAIPUR, FOLLOWED BY MIRANDA HOUSE, UNIVERSITY OF DELHI,
+          WHERE SHE STUDIED HISTORY. HER LEADERSHIP ROLES IN ORGANIZING
+          INTER-COLLEGE FESTIVALS AND STUDENT SEMINARS REFLECT HER CREATIVE
+          SPIRIT AND DEDICATION. AFTER COMPLETING A PHOTOGRAPHY COURSE AT
+          TRIVENI KALA SANGAM, SHIKHA EXPLORED HER CREATIVE INCLINATIONS
+          FURTHER, ULTIMATE- LY FINDING HER CALLING IN SILVER ARTISTRY.
+        </Typography>
+        <Typography fontSize="0.8rem" textAlign={"right"}>
+          CODE SILVER IS CELEBRATED NOT ONLY FOR ITS IMPECCABLE CRAFTSMANSHIP
+          BUT ALSO FOR ITS FOCUS ON CUSTOMIZA- TION, OFFERING TAILORED DESIGNS
+          PERFECT FOR GIFTING OR PERSONAL USE. THE BRAND'S INSPIRATION OFTEN
+          STEMS FROM GLOBAL INFLUENCES AND ITS COMMITMENT TO DELIVERING
+          EXCELLENCE HAS MADE IT A HALLMARK OF SOPHISTI- CATION. UNDER SHIKHA'S
+          GUIDANCE, CODE SILVER CONTINUES TO SET BENCHMARKS IN QUALITY,
+          INNOVATION, AND ART- ISTRY.
+        </Typography>
+      </Stack>
+      <Stack
+        width="50%"
+        height={"90vh"}
+        sx={{
+          backgroundImage: `url(${dukaan.src})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center center",
+          alignItems: "center",
+        }}
+      ></Stack>
+    </Stack>
+  );
+}
