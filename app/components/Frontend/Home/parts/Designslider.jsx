@@ -4,10 +4,7 @@ import React, { useRef, useState } from "react";
 import { Box, Stack, Typography } from "@mui/material";
 import Slider from "react-slick";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import banner from "../assets/22.png";
-import banner1 from "../assets/10.jpg";
-import banner2 from "../assets/12.jpg";
-import banner3 from "../assets/13.jpg";
+
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 const normalStyle = {
@@ -23,7 +20,16 @@ const hoverStyle = {
   width: "20px",
   color: "white",
 };
-const Designslider = () => {
+const Designslider = ({
+  bannerImages,
+  position,
+  width,
+  slidesToShow,
+  bottom,
+  padding,
+  paddinginner,
+}) => {
+  console.log("bannerimage", bannerImages);
   const [arrowStyle1, setArrowStyle1] = useState(normalStyle);
   const [arrowStyle2, setArrowStyle2] = useState(normalStyle);
   const DesisliderRef = useRef(null);
@@ -32,20 +38,18 @@ const Designslider = () => {
     infinite: true,
     speed: 500,
     centerMode: true,
-    slidesToShow: 3.2,
+    slidesToShow: slidesToShow,
     slidesToScroll: 1,
-    centerPadding: "40px",
+    centerPadding: padding,
     arrows: false,
     rtl: false,
   };
 
-  const bannerImages = [banner3, banner2, banner1, banner3];
-
   return (
     <Stack
       sx={{
-        position: "absolute",
-        width: "70%",
+        position: { position },
+        width: { width },
         right: "0%",
         top: "35%",
         height: "100%",
@@ -56,13 +60,21 @@ const Designslider = () => {
           {bannerImages.map((img, index) => (
             <Box
               key={index}
-              height="60vh"
               sx={{
-                backgroundImage: `url(${img.src})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center center",
+                padding: paddinginner, // Add horizontal padding (gap)
+                boxSizing: "border-box",
+                width: "calc(100% / slidesToShow)", // Ensure slides fit
               }}
-            />
+            >
+              <Box
+                height="60vh"
+                sx={{
+                  backgroundImage: `url(${img.src})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center center",
+                }}
+              />
+            </Box>
           ))}
         </Slider>
       </Box>
@@ -70,7 +82,7 @@ const Designslider = () => {
         direction="row"
         gap="10px"
         position="absolute"
-        bottom="65%"
+        bottom={bottom}
         left="1%"
       >
         <Stack
@@ -97,7 +109,7 @@ const Designslider = () => {
         direction="row"
         gap="10px"
         position="absolute"
-        bottom="65%"
+        bottom={bottom}
         right="1%"
       >
         <Stack

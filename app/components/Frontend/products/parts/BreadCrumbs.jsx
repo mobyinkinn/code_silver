@@ -16,21 +16,27 @@ export default function BasicBreadcrumbs() {
     <Box
       marginTop={"80px"}
       role="presentation"
-      padding={"20px 50px"}
+      padding={"50px 40px 20px 40px"}
       onClick={handleClick}
     >
       <Breadcrumbs aria-label="breadcrumb">
-        <Link underline="hover" color="inherit" href="/">
+        <Link
+          underline="hover"
+          color="inherit"
+          href="/"
+          style={{ fontSize: "12px" }}
+        >
           Code Silver
         </Link>
         <Link
           underline="hover"
           color="inherit"
-          href="/material-ui/getting-started/installation/"
+          href="/collections/BestSellers"
+          style={{ fontSize: "12px" }}
         >
           Religious Collection
         </Link>
-        <Typography sx={{ color: "text.primary" }}>
+        <Typography sx={{ color: "text.primary" }} style={{ fontSize: "12px" }}>
           Silver Plated Laxmi Charan with Chowki
         </Typography>
       </Breadcrumbs>

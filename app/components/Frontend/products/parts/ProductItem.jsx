@@ -24,10 +24,10 @@ const productData = {
   discountId: "",
 };
 
-export default function ProductItem() {
+export default function ProductItem({ name }) {
   return (
     <Stack direction="row">
-      <Stack width={"50%"} gap={"10px"} height={"140vh"}>
+      <Stack width={"55%"} gap={"10px"} height={"140vh"}>
         <Stack position={"relative"} width={"100%"} height={"90vh"}>
           <ReactImageMagnify
             imageProps={{
@@ -59,28 +59,28 @@ export default function ProductItem() {
           </Stack>
         </Stack>
       </Stack>
-      <Stack width={"50%"}>
-        <Stack padding={"40px"} gap={"30px"}>
-          <Typography fontSize={"1.7rem"} fontWeight={"bold"}>
-            {productData.name}
+      <Stack width={"45%"}>
+        <Stack padding={"10px 10px 10px 60px"} gap={"20px"}>
+          <Typography fontSize={"1.7rem"} fontWeight={500}>
+            {name}
           </Typography>
           <Stack
             style={{
-              height: "2px",
+              height: "1px",
               width: "60%",
-              backgroundColor: "#ddd",
+              backgroundColor: "#000000",
               position: "relative",
-              right: "40px",
+              right: "60px",
             }}
           ></Stack>
           <Typography
             sx={{
               paddingBottom: "10px",
-              borderBottom: "2px solid #ddd",
+              borderBottom: "1px solid #000",
             }}
           >
             MRP{" "}
-            <span style={{ fontSize: "1.4rem", fontWeight: "bold" }}>
+            <span style={{ fontSize: "1.4rem", fontWeight: 400 }}>
               ₹ {productData.price}/-
             </span>{" "}
             inclusive of all taxes
@@ -161,74 +161,81 @@ export default function ProductItem() {
               BUY NOW
             </Button>
           </Stack>
-          <Stack>
-            <Typography fontSize={"0.9rem"}>
-              Pickup Available at <b>EMRALD HOUSE</b>
-            </Typography>
-            <Typography fontSize={"0.8rem"}>
-              Usually Ready in 2-3 Business days
-            </Typography>
+          <Stack gap={1}>
+            <Stack>
+              <Typography fontSize={"0.9rem"}>
+                Pickup Available at <b>EMRALD HOUSE</b>
+              </Typography>
+              <Typography fontSize={"0.8rem"}>
+                Usually Ready in 2-3 Business days
+              </Typography>
+            </Stack>
             <Stack direction="row">
               <Typography fontSize={"0.8rem"} width={"140px"}>
                 Address:{" "}
               </Typography>
-              <Typography fontSize={"0.8rem"}>Code Silver D 31</Typography>
+              <Typography fontSize={"0.8rem"}>
+                Code Silver D-31 Subhash Marg C Scheme Ashok Nagar C Scheme
+                Ashok Nagar 302001 Jaipur Rajasthan India
+              </Typography>
             </Stack>
           </Stack>
-          <Stack>
-            <Typography fontSize="1.4rem">Product Description</Typography>
-            <Stack
-              style={{
-                height: "1px",
-                width: "40%",
-                backgroundColor: "#000",
-                marginBottom: "15px",
-              }}
-            ></Stack>
-            <Typography>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-              Explicabo quidem fugiat aperiam veritatis sed, itaque quibusdam
-              provident. Delectus amet aliquam minus, totam hic architecto
-              commodi, eos qui eius dolor possimus.
-            </Typography>
-          </Stack>
-          <Stack>
-            <Typography fontSize="1.4rem">Product Care</Typography>
-            <Stack
-              style={{
-                height: "1px",
-                width: "40%",
-                backgroundColor: "#000",
-                marginBottom: "15px",
-              }}
-            ></Stack>
-            <Typography>
-              1.)&nbsp;&nbsp;&nbsp;&nbsp; Lorem ipsum dolor sit, amet
-              consectetur adipisicing elit.
-            </Typography>
-            <Typography>
-              2.)&nbsp;&nbsp;&nbsp;&nbsp; provident. Delectus amet aliquam
-              minus, totam hic architecto
-            </Typography>
-          </Stack>
-          <Stack>
-            <Typography fontSize="1.4rem">Shipping & Delivery</Typography>
-            <Stack
-              style={{
-                height: "1px",
-                width: "40%",
-                backgroundColor: "#000",
-                marginBottom: "15px",
-              }}
-            ></Stack>
-            <Typography>
-              1.)&nbsp;&nbsp;&nbsp;&nbsp; Lorem ipsum dolor sit, amet
-              consectetur adipisicing elit.
-            </Typography>
-            <Typography>
-              2.)&nbsp;&nbsp;&nbsp;&nbsp; provident. Delectus amet aliquam
-              minus, totam hic architecto
-            </Typography>
+          <Stack gap={4}>
+            <Stack>
+              <Typography fontSize="1.3rem">Product Description</Typography>
+              <Stack
+                style={{
+                  height: "1px",
+                  width: "40%",
+                  backgroundColor: "#000",
+                  marginBottom: "15px",
+                }}
+              ></Stack>
+              <Typography fontWeight={300} fontSize={"1rem"}>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                Explicabo quidem fugiat aperiam veritatis sed, itaque quibusdam
+                provident. Delectus amet aliquam minus, totam hic architecto
+                commodi, eos qui eius dolor possimus.
+              </Typography>
+            </Stack>
+            <Stack>
+              <Typography fontSize="1.2rem" fontWeight={400}>Product Care</Typography>
+              <Stack
+                style={{
+                  height: "1px",
+                  width: "40%",
+                  backgroundColor: "#000",
+                  marginBottom: "15px",
+                }}
+              ></Stack>
+              <Typography fontWeight={300} fontSize={"0.9rem"} m={"5px 0"}>
+                1.)&nbsp;&nbsp;&nbsp;&nbsp; Lorem ipsum dolor sit, amet
+                consectetur adipisicing elit.
+              </Typography>
+              <Typography fontWeight={300} fontSize={"0.9rem"} m={"5px 0"}>
+                2.)&nbsp;&nbsp;&nbsp; provident. Delectus amet aliquam minus,
+                totam hic architecto
+              </Typography>
+            </Stack>
+            <Stack>
+              <Typography fontSize="1.3rem">Shipping & Delivery</Typography>
+              <Stack
+                style={{
+                  height: "1px",
+                  width: "40%",
+                  backgroundColor: "#000",
+                  marginBottom: "15px",
+                }}
+              ></Stack>
+              <Typography fontWeight={300} fontSize={"1rem"}>
+                1.)&nbsp;&nbsp;&nbsp;&nbsp; Lorem ipsum dolor sit, amet
+                consectetur adipisicing elit.
+              </Typography>
+              <Typography fontWeight={300} fontSize={"1rem"}>
+                2.)&nbsp;&nbsp;&nbsp; provident. Delectus amet aliquam minus,
+                totam hic architecto
+              </Typography>
+            </Stack>
           </Stack>
         </Stack>
       </Stack>

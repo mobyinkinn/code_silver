@@ -72,29 +72,7 @@ const navData = [
     id: 0,
     name: "Home & Decor ",
     route: "/home-Decor ",
-    subRoutes: [
-      {
-        id: 0,
-        head: "Sky Textiles.",
-        data: "Fabrics & Processing",
-        color: "#FFDFE6",
-        route: "/company-profile/sky-textiles",
-      },
-      {
-        id: 1,
-        head: "SKY Primwear.",
-        data: "Garmenting & Finishing",
-        color: "#DFDFFD",
-        route: "/company-profile/sky-primware",
-      },
-      {
-        id: 2,
-        head: "SKY International.",
-        data: "D2C and B2B Trading",
-        color: "#DFD5E6",
-        route: "/company-profile/sky-international",
-      },
-    ],
+    subRoutes: [],
   },
   {
     id: 1,
@@ -106,65 +84,13 @@ const navData = [
     id: 2,
     name: "Code Silver Wild",
     route: "/code-silver-wild",
-    subRoutes: [
-      {
-        id: 0,
-        head: "Yarns",
-        data: "Foundation for textile creation",
-        color: "#FFDFE6",
-        route: "/products/yarns",
-      },
-      {
-        id: 1,
-        head: "Fabrics",
-        data: "Versatile textiles for design",
-        color: "#DFDFFD",
-        route: "/products/fabrics",
-      },
-      {
-        id: 2,
-        head: "Garments",
-        data: "Clothing for fashion",
-        color: "#DFD5E6",
-        route: "/products/garments",
-      },
-    ],
+    subRoutes: [],
   },
   {
     id: 3,
     name: "Points of Sale",
     route: "/points-of-sale",
-    subRoutes: [
-      {
-        id: 0,
-        head: "Social Responsiblity",
-        data: "Commitment to community welfare",
-        color: "#FFDFE6",
-        route: "/sustainability/csr",
-      },
-      {
-        id: 1,
-        head: "Events",
-        data: "Events for Employees",
-        color: "#DFD5E6",
-        route:
-          "/sustainability/event-yarn-fabrics-textile-manufacturer-gujarat-india",
-      },
-      {
-        id: 2,
-        head: "Why Us",
-        data: "Quality, trust, and innovation",
-        color: "#DFDFFD",
-        route: "/sustainability/why-us",
-      },
-      {
-        id: 3,
-        head: "Certifications",
-        data: "Assurance of quality standards",
-        color: "#DFD5E6",
-        route: "/sustainability/certifications",
-      },
-    ],
+    subRoutes: []
   },
   {
     id: 4,
@@ -210,19 +136,19 @@ export default function Navbar({ color }) {
         display={{ xs: "none", lg: "flex" }}
         direction={"row"}
         width={"100%"}
-        height={"80px"}
+        height={"109px"}
         alignItems={"center"}
-        padding={"15px 0"}
+        padding={"15px 20px"}
         position={"absolute"}
         backgroundColor={color}
         zIndex={"100"}
         top={"0"}
       >
-        <Box sx={{ display: "flex" }} width={"44%"} justifyContent={"center"}>
+        <Box sx={{ display: "flex" }} width={"50%"} justifyContent={"center"}>
           {navData.map((el, i) => {
             return (
               <Stack key={i} justifyContent={"center"}>
-                <Stack direction={"row"} gap={"2px"} alignItems={"center"}>
+                <Stack direction={"row"} alignItems={"center"}>
                   <Link
                     className="nav-link"
                     href={el.route}
@@ -297,11 +223,11 @@ export default function Navbar({ color }) {
             );
           })}
         </Box>
-        <Box width={"10%"}>
+        <Box width={"16%"}>
           <Image
             src={logo}
             alt="Sky Textiles"
-            style={{ cursor: "pointer", width: "100%", height: "100px" }}
+            style={{ cursor: "pointer", width: "100%", height: "150px" }}
             onClick={() => {
               router.push("/");
             }}

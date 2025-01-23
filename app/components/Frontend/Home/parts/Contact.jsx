@@ -28,7 +28,7 @@ const Contact = () => {
           backgroundPosition: "top right",
         }}
       />
-      <Stack width="65%" height={"100vh"} direction={"row"}>
+      <Stack width="58%" height={"100vh"} direction={"row"}>
         <Stack width={"50%"} height={"100%"}>
           <Stack height={"50%"} width={"100%"} position={"relative"}>
             <Image src={banner2.src} fill objectFit="cover" />
@@ -46,12 +46,12 @@ const Contact = () => {
           />
         </Stack>
       </Stack>
-      <Stack width={"35%"} justifyContent={"space-around"}>
+      <Stack width={"42%"} justifyContent={"space-between"} p={"40px 0"}>
         <Stack textAlign={"right"}>
-          <Typography p="0 40px" fontSize="40px" pl={5}>
+          <Typography p="0 40px" fontSize="55px" pl={5}>
             Come to
           </Typography>
-          <Typography p="0 40px" fontSize="60px" lineHeight={1}>
+          <Typography p="0 40px" fontSize="75px" lineHeight={1}>
             Code Silver
           </Typography>
           <Box
@@ -59,7 +59,7 @@ const Contact = () => {
             sx={{
               content: "''",
               height: "1px",
-              width: "350px",
+              width: "450px",
               bgcolor: "black",
             }}
           />
@@ -77,7 +77,7 @@ const Contact = () => {
               bgcolor: "black",
             }}
           />
-          <Typography p="20px 40px" fontSize="22px" lineHeight={1}>
+          <Typography p="20px 40px" fontSize="28px" lineHeight={1.5}>
             Emerald House, D-31, Subhash Marg, Panch Batti, C Scheme, Ashok
             Nagar, Jaipur,Rajasthan 302001
           </Typography>
