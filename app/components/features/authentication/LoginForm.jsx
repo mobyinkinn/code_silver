@@ -3,39 +3,40 @@ import Button from "../../ui/Button";
 import Form from "../../ui/Form";
 import Input from "../../ui/Input";
 import FormRowVertical from "../../ui/FormRowVertical";
-// import { useLogin } from "./useLogin";
+import { useLogin } from "./useLogin";
 
 function LoginForm() {
-  const [email, setEmail] = useState("yogesh@mobyink.com");
+  const [username, setUsername] = useState("yogesh");
   const [password, setPassword] = useState("123");
-  // const { login, isLoading } = useLogin();
+  const { login, isLoading } = useLogin();
 
   function handleSubmit(e) {
     e.preventDefault();
-    // if (!email || !password) return;
 
-    // login(
-    // { email, password },
-    // {
-    // onSettled: () => {
-    // setEmail("");
-    // setPassword("");
-    // },
-    // }
-    // );
+    if (!username || !password) return;
+
+    login(
+      { username, password },
+      {
+        onSettled: () => {
+          setUsername("");
+          setPassword("");
+        },
+      }
+    );
   }
 
   return (
     <Form type="regular" onSubmit={handleSubmit}>
       <FormRowVertical label="Email address">
         <Input
-          type="email"
-          id="email"
+          type="text"
+          id="username"
           // This makes this form better for password managers
           autoComplete="username"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          // disabled={isLoading}
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          disabled={isLoading}
         />
       </FormRowVertical>
       <FormRowVertical label="Password">
@@ -45,17 +46,12 @@ function LoginForm() {
           autoComplete="current-password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          // disabled={isLoading}
+          disabled={isLoading}
         />
       </FormRowVertical>
       <FormRowVertical>
-        <Button
-          size="medium"
-          variation="primary"
-          // disabled={isLoading}
-        >
-          Log in
-          {/* {!isLoading ? "Log in" : <SpinnerMini />} */}
+        <Button size="medium" variation="primary" disabled={isLoading}>
+          {!isLoading ? "Log in" : <SpinnerMini />}
         </Button>
       </FormRowVertical>
     </Form>

@@ -1,20 +1,20 @@
 import {
-  blockAdmin as blockTheAdmin,
-  fetchAllAdmins,
-  unblockAdmin as unblockTheAdmin,
-  deleteAdmin as deleteTheAdmin,
-  updateAdmin as updateTheAdmin,
+  blockCustomer as blockTheAdmin,
+  fetchAllCustomers,
+  unblockCustomer as unblockTheAdmin,
+  deleteCustomer as deleteTheAdmin,
+  updateCustomer as updateTheAdmin,
   updatePassword as updateThePassword,
-  createAdmin as createTheAdmin,
-  fetchAdmin,
-} from "@/app/components/services/api.admin";
+  createCustomer as createTheAdmin,
+  fetchCustomer,
+} from "@/app/components/services/api.customer";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
 export const useAdmin = () => {
   const { data, isLoading, error } = useQuery({
     queryKey: ["Admins"],
-    queryFn: fetchAllAdmins,
+    queryFn: fetchAllCustomers,
     staleTime: 5 * 60 * 1000,
   });
 

@@ -33,10 +33,16 @@ function UserTable() {
   if (!filteredUsers.length) return <Empty resourceName="Admins" />;
   return (
     <Menus>
-      <Table columns="1.3fr 2.4fr 3.2rem">
+      <Table columns="1.3fr 3fr 2fr 2fr 2fr 2fr 2fr 3.4fr 3.2rem">
         <Table.Header>
           <div>Name</div>
-          <div>Username</div>
+          <div>Email</div>
+          <div>Subscribed</div>
+          <div>Address</div>
+          <div>Total Orders</div>
+          <div>Contact</div>
+          <div>Country</div>
+          <div>Total Amount</div>
           <div></div>
         </Table.Header>
 

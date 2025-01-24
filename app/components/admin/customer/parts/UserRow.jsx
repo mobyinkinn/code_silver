@@ -39,7 +39,19 @@ const Stacked = styled.div`
   }
 `;
 
-function UserRow({ user: { _id: id, email, username } }) {
+function UserRow({
+  user: {
+    _id: id,
+    name,
+    subscribed,
+    address,
+    totalOrders,
+    contact,
+    countryCode,
+    email,
+    totalAmount,
+  },
+}) {
   const { deleteAdmin, isDeleting } = useDeleteAdmin();
   //   const navigate = useNavigate();
   //   const { checkout, isCheckingOut } = useCheckout();
@@ -74,12 +86,42 @@ function UserRow({ user: { _id: id, email, username } }) {
     <Table.Row>
       <Stacked>
         <span>Name</span>
-        <span>{username}</span>
+        <span>{name}</span>
       </Stacked>
 
       <Stacked>
         <span>Email</span>
         <span>{email}</span>
+      </Stacked>
+
+      <Stacked>
+        <span>Subscribed</span>
+        <span>{subscribed ? "Yes" : "No"}</span>
+      </Stacked>
+
+      <Stacked>
+        <span>Address</span>
+        <span>{address}</span>
+      </Stacked>
+
+      <Stacked>
+        <span>Orders</span>
+        <span>{totalOrders.length}</span>
+      </Stacked>
+
+      <Stacked>
+        <span>Contact</span>
+        <span>{contact}</span>
+      </Stacked>
+
+      <Stacked>
+        <span>Country</span>
+        <span>{countryCode}</span>
+      </Stacked>
+
+      <Stacked>
+        <span>Total Amount</span>
+        <span>{totalAmount}</span>
       </Stacked>
 
       {/* <Stacked>

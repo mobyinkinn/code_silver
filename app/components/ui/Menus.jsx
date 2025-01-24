@@ -123,7 +123,7 @@ function Button({ children, icon, onClick }) {
     close();
   }
   return (
-    <li style={{ listStyleType: "none" }}>
+    <li style={{ listStyleType: "none", cursor: "pointer" }}>
       <StyledButton onClick={handleClick}>
         {icon}
         <span>{children}</span>
