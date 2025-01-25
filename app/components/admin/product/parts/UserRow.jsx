@@ -16,7 +16,7 @@ import {
   HiTrash,
 } from "react-icons/hi2";
 import { HiEyeOff, HiPencil } from "react-icons/hi";
-import { useDeleteCustomer } from "./useUser";
+import { useDeleteProduct } from "./useUser";
 // import { useBlockAdmin, useDeleteAdmin, useUnblockAdmin } from "./useUser";
 import EditAdminForm from "@/app/components/features/Admin/EditAdminForm";
 // import { useNavigate } from "react-router-dom";
@@ -40,19 +40,9 @@ const Stacked = styled.div`
 `;
 
 function UserRow({
-  user: {
-    _id: id,
-    name,
-    subscribed,
-    address,
-    totalOrders,
-    contact,
-    countryCode,
-    email,
-    totalAmount,
-  },
+  user: { _id: id, name, draft, description, price, reviews },
 }) {
-  const { deleteAdmin, isDeleting } = useDeleteCustomer();
+  const { deleteProduct, isDeleting } = useDeleteProduct();
   //   const navigate = useNavigate();
   //   const { checkout, isCheckingOut } = useCheckout();
   //   const { deleteBooking, isDeleting } = useDeleteBooking();
@@ -90,38 +80,23 @@ function UserRow({
       </Stacked>
 
       <Stacked>
-        <span>Email</span>
-        <span>{email}</span>
+        <span>Draft</span>
+        <span>{draft ? "Yes" : "No"}</span>
       </Stacked>
 
       <Stacked>
-        <span>Subscribed</span>
-        <span>{subscribed ? "Yes" : "No"}</span>
+        <span>Description</span>
+        <span>{description}</span>
       </Stacked>
 
       <Stacked>
-        <span>Address</span>
-        <span>{address}</span>
+        <span>Price</span>
+        <span>{price}</span>
       </Stacked>
 
       <Stacked>
-        <span>Orders</span>
-        <span>{totalOrders.length}</span>
-      </Stacked>
-
-      <Stacked>
-        <span>Contact</span>
-        <span>{contact}</span>
-      </Stacked>
-
-      <Stacked>
-        <span>Country</span>
-        <span>{countryCode}</span>
-      </Stacked>
-
-      <Stacked>
-        <span>Total Amount</span>
-        <span>{totalAmount}</span>
+        <span>Reviews</span>
+        <span>{reviews}</span>
       </Stacked>
 
       {/* <Stacked>
@@ -157,7 +132,7 @@ function UserRow({
           <ConfirmDelete
             resourceName="Banner"
             disabled={isDeleting}
-            onConfirm={() => deleteAdmin(id)}
+            onConfirm={() => deleteProduct(id)}
           />
         </Modal.Window>
       </Modal>

@@ -1,19 +1,19 @@
 import {
-  blockCustomer as blockTheAdmin,
+  blockCustomer as blockTheCustomer,
   fetchAllCustomers,
-  unblockCustomer as unblockTheAdmin,
-  deleteCustomer as deleteTheAdmin,
-  updateCustomer as updateTheAdmin,
+  unblockCustomer as unblockTheCustomer,
+  deleteCustomer as deleteTheCustomer,
+  updateCustomer as updateTheCustomer,
   updatePassword as updateThePassword,
-  createCustomer as createTheAdmin,
+  createCustomer as createTheCustomer,
   fetchCustomer,
 } from "@/app/components/services/api.customer";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
-export const useAdmin = () => {
+export const useCustomer = () => {
   const { data, isLoading, error } = useQuery({
-    queryKey: ["Admins"],
+    queryKey: ["Customers"],
     queryFn: fetchAllCustomers,
     staleTime: 5 * 60 * 1000,
   });
@@ -21,28 +21,28 @@ export const useAdmin = () => {
   return { data, isLoading, error };
 };
 
-export const useCurrentAdmin = () => {
+export const useCurrentCustomer = () => {
   const {
-    data: currAdmin,
+    data: currCustomer,
     isLoading: isFetching,
     error,
   } = useQuery({
-    queryKey: ["Admin"],
-    queryFn: fetchAdmin,
+    queryKey: ["Customer"],
+    queryFn: fetchCustomer,
     staleTime: 1 * 1000,
   });
 
-  return { currAdmin, isFetching, error };
+  return { currCustomer, isFetching, error };
 };
 
-export const useBlockAdmin = () => {
+export const useBlockCustomer = () => {
   const queryClient = useQueryClient();
 
-  const { mutate: blockAdmin, isLoading: isBlocking } = useMutation({
-    mutationFn: blockTheAdmin,
+  const { mutate: blockCustomer, isLoading: isBlocking } = useMutation({
+    mutationFn: blockTheCustomer,
     onSuccess: () => {
-      queryClient.invalidateQueries(["Admins"]);
-      toast.success("Admin blocked successfully!!!");
+      queryClient.invalidateQueries(["Customers"]);
+      toast.success("Customer blocked successfully!!!");
     },
     onError: (error) => {
       console.error("Failed to block admin: ", error);
@@ -50,17 +50,17 @@ export const useBlockAdmin = () => {
     },
   });
 
-  return { blockAdmin, isBlocking };
+  return { blockCustomer, isBlocking };
 };
 
-export const useUnblockAdmin = () => {
+export const useUnblockCustomer = () => {
   const queryClient = useQueryClient();
 
-  const { mutate: unblockAdmin, isLoading: isUnblocking } = useMutation({
-    mutationFn: unblockTheAdmin,
+  const { mutate: unblockCustomer, isLoading: isUnblocking } = useMutation({
+    mutationFn: unblockTheCustomer,
     onSuccess: () => {
-      queryClient.invalidateQueries(["Admins"]);
-      toast.success("Admin blocked successfully!!!");
+      queryClient.invalidateQueries(["Customers"]);
+      toast.success("Customer blocked successfully!!!");
     },
     onError: (error) => {
       console.error("Failed to block admin: ", error);
@@ -68,16 +68,16 @@ export const useUnblockAdmin = () => {
     },
   });
 
-  return { unblockAdmin, isUnblocking };
+  return { unblockCustomer, isUnblocking };
 };
 
-export const useDeleteAdmin = () => {
+export const useDeleteCustomer = () => {
   const queryClient = useQueryClient();
-  const { mutate: deleteAdmin, isLoading: isDeleting } = useMutation({
-    mutationFn: deleteTheAdmin,
+  const { mutate: deleteCustomer, isLoading: isDeleting } = useMutation({
+    mutationFn: deleteTheCustomer,
     onSuccess: () => {
-      queryClient.invalidateQueries(["Admins"]);
-      toast.success("Admin deleted successfully!!!");
+      queryClient.invalidateQueries(["Customers"]);
+      toast.success("Customer deleted successfully!!!");
     },
     onError: (error) => {
       console.error("Failed to delete admin: ", error);
@@ -85,16 +85,16 @@ export const useDeleteAdmin = () => {
     },
   });
 
-  return { deleteAdmin, isDeleting };
+  return { deleteCustomer, isDeleting };
 };
 
-export const useUpdateAdmin = () => {
+export const useUpdateCustomer = () => {
   const queryClient = useQueryClient();
-  const { mutate: updateAdmin, isLoading: isUpdating } = useMutation({
-    mutationFn: updateTheAdmin,
+  const { mutate: updateCustomer, isLoading: isUpdating } = useMutation({
+    mutationFn: updateTheCustomer,
     onSuccess: () => {
-      queryClient.invalidateQueries(["Admins"]);
-      toast.success("Admin updated successfully!!!");
+      queryClient.invalidateQueries(["Customers"]);
+      toast.success("Customer updated successfully!!!");
     },
     onError: (error) => {
       console.error("Failed to update admin: ", error);
@@ -102,7 +102,7 @@ export const useUpdateAdmin = () => {
     },
   });
 
-  return { updateAdmin, isUpdating };
+  return { updateCustomer, isUpdating };
 };
 
 export const useUpdatePassword = () => {
@@ -110,7 +110,7 @@ export const useUpdatePassword = () => {
   const { mutate: updatePassword, isLoading: isUpdating } = useMutation({
     mutationFn: updateThePassword,
     onSuccess: () => {
-      queryClient.invalidateQueries(["Admins"]);
+      queryClient.invalidateQueries(["Customers"]);
       toast.success("Password updated successfully!!!");
     },
     onError: (error) => {
@@ -122,18 +122,18 @@ export const useUpdatePassword = () => {
   return { updatePassword, isUpdating };
 };
 
-export const useCreateAdmin = () => {
+export const useCreateCustomer = () => {
   const queryClient = useQueryClient();
-  const { mutate: createAdmin, isLoading: isCreating } = useMutation({
-    mutationFn: createTheAdmin,
+  const { mutate: createCustomer, isLoading: isCreating } = useMutation({
+    mutationFn: createTheCustomer,
     onSuccess: () => {
-      queryClient.invalidateQueries(["Admins"]);
-      toast.success("Admin created successfully!!!");
+      queryClient.invalidateQueries(["Customers"]);
+      toast.success("Customer created successfully!!!");
     },
     onError: (error) => {
       console.error("Failed to create admin: ", error);
       toast.error("Failed to create admin.");
     },
   });
-  return { createAdmin, isCreating };
+  return { createCustomer, isCreating };
 };

@@ -61,25 +61,31 @@ function MainNav() {
           </StyledNavLink>
         </li>
         <li>
-          <StyledNavLink href="/admin/adminuser">
+          <StyledNavLink href="/admin/customers">
             <HiOutlineLogout />
             <span>Customers</span>
           </StyledNavLink>
         </li>
         <li>
-          <StyledNavLink href="/admin/adminuser">
+          <StyledNavLink href="/admin/products">
             <HiOutlineLogout />
             <span>Products</span>
           </StyledNavLink>
         </li>
         <li>
-          <StyledNavLink href="/admin/adminuser">
+          <StyledNavLink href="/admin/collections">
+            <HiOutlineLogout />
+            <span>Collections</span>
+          </StyledNavLink>
+        </li>
+        <li>
+          <StyledNavLink href="/admin/orders">
             <HiOutlineLogout />
             <span>Orders</span>
           </StyledNavLink>
         </li>
         <li>
-          <StyledNavLink href="/admin/adminuser">
+          <StyledNavLink href="/admin/discounts">
             <HiOutlineLogout />
             <span>Discounts</span>
           </StyledNavLink>
