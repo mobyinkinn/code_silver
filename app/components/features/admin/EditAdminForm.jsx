@@ -6,17 +6,15 @@ import Button from "../../ui/Button";
 import FileInput from "../../ui/FileInput";
 import Textarea from "../../ui/Textarea";
 import FormRow from "../../ui/FormRow";
-
 import { Stack } from "@mui/material";
 
 import { useState } from "react";
-
 import {
   useAdmin,
   useUpdateAdmin,
   useUpdatePassword,
-} from "../../admin/admin/parts/useUser";
-// import Select from "react-select";
+} from "../../admin/userManagement/parts/useUser";
+import Select from "react-select";
 
 const options = [
   { value: "admin", label: "Admin" },
@@ -123,7 +121,7 @@ function EditAdminForm({ onCloseModal, id }) {
         />
       </FormRow>
 
-      {/* <FormRow label="Name" error={errors?.page?.message}>
+      <FormRow label="Name" error={errors?.page?.message}>
         <Input
           disabled={isWorking}
           value={adminData.name}
@@ -138,7 +136,7 @@ function EditAdminForm({ onCloseModal, id }) {
             onUpdateDepartment({ ...adminData, name: newVal }, id);
           }}
         />
-      </FormRow> */}
+      </FormRow>
 
       <FormRow label="Password" error={errors?.page?.message}>
         <Input
@@ -158,7 +156,7 @@ function EditAdminForm({ onCloseModal, id }) {
         />
       </FormRow>
 
-      {/* <FormRow label="Permissions" error={errors?.page?.message}>
+      <FormRow label="Permissions" error={errors?.page?.message}>
         <Select
           defaultValue={() => calculateOptions()}
           isMulti
@@ -170,7 +168,7 @@ function EditAdminForm({ onCloseModal, id }) {
             handleMenu(e);
           }}
         />
-      </FormRow> */}
+      </FormRow>
       <Stack
         direction="row"
         sx={{

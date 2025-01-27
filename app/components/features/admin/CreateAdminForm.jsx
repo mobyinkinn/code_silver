@@ -11,10 +11,9 @@ import FormRow from "../../ui/FormRow";
 // import { useCreateDepartment } from "../../admin/departments/parts/useDepartment";
 import { Stack } from "@mui/material";
 import SpinnerMini from "../../ui/SpinnerMini";
-import { createAdmin } from "../../services/api.admin";
-// import Select from "react-select";
+import { createAdmin } from "../../services/api.User";
+import Select from "react-select";
 import { useState } from "react";
-import { useCreateAdmin } from "../../admin/admin/parts/useUser";
 
 const options = [
   { value: "admin", label: "Admin" },
@@ -46,11 +45,9 @@ function CreateAdminForm({ cabinToEdit = {}, onCloseModal }) {
   });
   const { errors } = formState;
 
-  // const { isCreating, createDepartment } = useCreateDepartment();
   //   const { isEditing, editCabin } = useEditCabin();
-  const { isCreating, createAdmin } = useCreateAdmin();
   const [menu, setMenu] = useState([]);
-  const [isshow, setisshow] = useState("");
+const [isshow, setisshow] = useState("")
   const isWorking = isCreating;
 
   function handleMenu(e) {
@@ -62,17 +59,20 @@ function CreateAdminForm({ cabinToEdit = {}, onCloseModal }) {
   }
 
   function onSubmit(data) {
+    console.log("Department data: ", data);
+
     const formdata = {
       username: data.username,
       email: data.email,
+      name: data.name,
       password: data.password,
-      // status: true,
-      // submenu: [],
-      // donations: [],
-      // isSuperAdmin: true,
-      // menu,
+      status: true,
+      submenu: [],
+      donations: [],
+      isSuperAdmin: true,
+      menu,
     };
-    console.log("Admin formdata: ", formdata);
+    console.log("Department formdata: ", formdata);
 
     createAdmin(formdata, {
       onSuccess: (formdata) => {
@@ -86,7 +86,7 @@ function CreateAdminForm({ cabinToEdit = {}, onCloseModal }) {
   }
   return (
     <Form
-      style={{ overflow: "visible" }}
+    style={{overflow:"visible"}}
       onSubmit={handleSubmit(onSubmit, onError)}
       type={onCloseModal ? "modal" : "regular"}
     >
@@ -112,7 +112,7 @@ function CreateAdminForm({ cabinToEdit = {}, onCloseModal }) {
         />
       </FormRow>
 
-      {/* <FormRow label="Name" error={errors?.page?.message}>
+      <FormRow label="Name" error={errors?.page?.message}>
         <Input
           disabled={isWorking}
           type="name"
@@ -121,12 +121,12 @@ function CreateAdminForm({ cabinToEdit = {}, onCloseModal }) {
             required: "This field is required",
           })}
         />
-      </FormRow> */}
+      </FormRow>
 
       <FormRow label="Password" error={errors?.page?.message}>
         <Input
           disabled={isWorking}
-          type={!isshow ? "password" : "name"}
+          type={!isshow?"password":"name"}
           id="password"
           {...register("password", {
             required: "This field is required",
@@ -134,7 +134,7 @@ function CreateAdminForm({ cabinToEdit = {}, onCloseModal }) {
         />
       </FormRow>
 
-      {/* <FormRow label="Permissions" error={errors?.page?.message}>
+      <FormRow label="Permissions" error={errors?.page?.message}>
         <Select
           isMulti
           name="colors"
@@ -145,7 +145,7 @@ function CreateAdminForm({ cabinToEdit = {}, onCloseModal }) {
             handleMenu(e);
           }}
         />
-      </FormRow> */}
+      </FormRow>
 
       <Stack
         direction="row"
@@ -156,14 +156,13 @@ function CreateAdminForm({ cabinToEdit = {}, onCloseModal }) {
       >
         <Button
           variation="secondary"
-          size="medium"
           type="reset"
           onClick={() => onCloseModal?.()}
         >
           Cancel
         </Button>
-        <Button size="medium" variation="primary" disabled={isWorking}>
-          {isWorking ? <SpinnerMini /> : "Create new admin"}
+        <Button disabled={isWorking}>
+          {isWorking ? <SpinnerMini /> : "Create new banner"}
         </Button>
       </Stack>
     </Form>
