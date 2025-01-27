@@ -1,7 +1,7 @@
-import { login as loginApi } from "../../services/apiAuth";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { login as loginApi } from "../../services/api.auth";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export function useLogin() {
   const router = useRouter();
@@ -13,7 +13,7 @@ export function useLogin() {
       router.push("/admin/adminuser");
     },
     onError: (err) => {
-      toast.error("Provided username or password are incorrect");
+      toast.error("Provided email or password are incorrect");
     },
   });
 

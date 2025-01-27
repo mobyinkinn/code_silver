@@ -4,12 +4,15 @@ import styled from "styled-components";
 
 const StyledLogo = styled.div`
   text-align: center;
+  width: 100%;
+  height: 15vh;
+  position: relative;
 `;
 
 function Logo({ src }) {
   return (
     <StyledLogo>
-      <Image src={src} alt="Logo" />
+      <Image src={src} fill objectFit="contain" alt="Logo" />
     </StyledLogo>
   );
 }

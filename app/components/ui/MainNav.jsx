@@ -1,32 +1,27 @@
 /* eslint-disable no-unused-vars */
 
-import { NavLink } from "react-router-dom";
+// import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-import {
-  HiOutlineCalendarDays,
-  HiOutlineCog6Tooth,
-  HiOutlineHome,
-  HiOutlineHomeModern,
-  HiOutlineUsers,
-} from "react-icons/hi2";
-
+import Link from "next/link";
+import { HiOutlineLogout } from "react-icons/hi";
 const NavList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
+  list-style-type: none;
 `;
 
-const StyledNavLink = styled(NavLink)`
+const StyledNavLink = styled(Link)`
   &:link,
   &:visited {
     display: flex;
     align-items: center;
     gap: 1.2rem;
-
     color: var(--color-grey-600);
-    font-size: 1.6rem;
+    font-size: 1rem;
+    text-decoration: none;
     font-weight: 500;
-    padding: 1.2rem 2.4rem;
+    padding: 0.8rem 1.5rem;
     transition: all 0.3s;
   }
 
@@ -41,8 +36,8 @@ const StyledNavLink = styled(NavLink)`
   }
 
   & svg {
-    width: 2.4rem;
-    height: 2.4rem;
+    width: 1.5rem;
+    height: 1.5rem;
     color: var(--color-grey-400);
     transition: all 0.3s;
   }
@@ -60,33 +55,39 @@ function MainNav() {
     <nav>
       <NavList>
         <li>
-          <StyledNavLink to="/dashboard">
-            <HiOutlineHome />
-            <span>Home</span>
+          <StyledNavLink href="/admin/adminuser">
+            <HiOutlineLogout />
+            <span>Admin</span>
           </StyledNavLink>
         </li>
         <li>
-          <StyledNavLink to="/bookings">
-            <HiOutlineCalendarDays />
-            <span>Bookings</span>
+          <StyledNavLink href="/admin/customers">
+            <HiOutlineLogout />
+            <span>Customers</span>
           </StyledNavLink>
         </li>
         <li>
-          <StyledNavLink to="/cabins">
-            <HiOutlineHomeModern />
-            <span>Cabins</span>
+          <StyledNavLink href="/admin/products">
+            <HiOutlineLogout />
+            <span>Products</span>
           </StyledNavLink>
         </li>
         <li>
-          <StyledNavLink to="/users">
-            <HiOutlineUsers />
-            <span>Users</span>
+          <StyledNavLink href="/admin/collections">
+            <HiOutlineLogout />
+            <span>Collections</span>
           </StyledNavLink>
         </li>
         <li>
-          <StyledNavLink to="/settings">
-            <HiOutlineCog6Tooth />
-            <span>Settings</span>
+          <StyledNavLink href="/admin/orders">
+            <HiOutlineLogout />
+            <span>Orders</span>
+          </StyledNavLink>
+        </li>
+        <li>
+          <StyledNavLink href="/admin/discounts">
+            <HiOutlineLogout />
+            <span>Discounts</span>
           </StyledNavLink>
         </li>
       </NavList>

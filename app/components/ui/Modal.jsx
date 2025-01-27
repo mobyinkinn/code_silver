@@ -88,7 +88,7 @@ function Window({ children, name }) {
     <Overlay>
       <StyledModal ref={ref}>
         <Button onClick={close}>
-          <HiXMark />
+          <HiXMark style={{ cursor: "pointer" }} />
         </Button>
         <div>{cloneElement(children, { onCloseModal: close })}</div>
       </StyledModal>

@@ -6,7 +6,7 @@ import FormRowVertical from "../../ui/FormRowVertical";
 import { useLogin } from "./useLogin";
 
 function LoginForm() {
-  const [username, setusername] = useState("yogesh");
+  const [username, setUsername] = useState("yogesh");
   const [password, setPassword] = useState("123");
   const { login, isLoading } = useLogin();
 
@@ -18,7 +18,7 @@ function LoginForm() {
       { username, password },
       {
         onSettled: () => {
-          setusername("");
+          setUsername("");
           setPassword("");
         },
       }
@@ -26,15 +26,15 @@ function LoginForm() {
   }
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <FormRowVertical label="User Name">
+    <Form type="regular" onSubmit={handleSubmit}>
+      <FormRowVertical label="Email address">
         <Input
-          type="name"
-          id="name"
+          type="text"
+          id="username"
           // This makes this form better for password managers
           autoComplete="username"
           value={username}
-          onChange={(e) => setusername(e.target.value)}
+          onChange={(e) => setUsername(e.target.value)}
           disabled={isLoading}
         />
       </FormRowVertical>
@@ -49,7 +49,7 @@ function LoginForm() {
         />
       </FormRowVertical>
       <FormRowVertical>
-        <Button size="medium" disabled={isLoading}>
+        <Button size="medium" variation="primary" disabled={isLoading}>
           {!isLoading ? "Log in" : <SpinnerMini />}
         </Button>
       </FormRowVertical>
