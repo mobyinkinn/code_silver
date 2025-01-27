@@ -6,6 +6,7 @@ import {
   updateCollection as updateTheCollection,
   updatePassword as updateThePassword,
   createCollection as createTheCollection,
+  updateImage as updateTheImage,
   fetchCollection,
 } from "@/app/components/services/api.collection";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
@@ -136,4 +137,22 @@ export const useCreateCollection = () => {
     },
   });
   return { createCollection, isCreating };
+};
+
+export const useUpdateImage = () => {
+  const queryClient = useQueryClient();
+
+  const { mutate: updateImage, isPending: isUpdatingImage } = useMutation({
+    mutationFn: updateTheImage,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["Departments"]);
+      toast.success("Department updated successfully!!!");
+    },
+    onError: (error) => {
+      console.error("Failed to update department: ", error);
+      toast.error("Failed to update department. Please try again.");
+    },
+  });
+
+  return { updateImage, isUpdatingImage };
 };

@@ -5,7 +5,7 @@ export const fetchCollection = async () => {
   const response = await axios.get(`${ApiUrl}/collection/get-all`, {
     withCredentials: true,
   });
-  return response.data.message; // Adjust based on actual API structure
+  return response.data.message;
 };
 
 export const fetchAllCollections = async () => {
@@ -78,4 +78,15 @@ export const updatePassword = async ({ password, id }) => {
   );
 
   return response;
+};
+
+export const updateImage = async ({ formdata, id }) => {
+  const response = await axios.post(
+    `${ApiUrl}/collection/update-image/${id}`,
+    formdata,
+    {
+      withCredentials: true,
+    }
+  );
+  return response.data;
 };

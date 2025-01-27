@@ -14,7 +14,9 @@ import { useState } from "react";
 import {
   useCollection,
   useUpdateCollection,
+  useUpdateImage,
 } from "../../admin/collection/parts/useUser";
+import SpinnerMini from "../../ui/SpinnerMini";
 
 const options = [
   { value: "admin", label: "Admin" },
@@ -39,8 +41,8 @@ const options = [
 
 function EditCollectionForm({ onCloseModal, id }) {
   const { data, isLoading: isWorking } = useCollection();
+  const { updateImage, isUpdatingImage } = useUpdateImage();
   const filteredData = data.filter((el) => el._id === id);
-  console.log(filteredData);
   const { register, handleSubmit, reset, getValues, formState } = useForm({
     defaultValues: {},
   });
@@ -49,33 +51,36 @@ function EditCollectionForm({ onCloseModal, id }) {
 
   const { errors } = formState;
 
-  function calculateOptions() {
-    const newOptions = [];
+  // function handleMenu(e) {
+  //   const newArr = [];
+  //   for (let i = 0; i < e.length; i++) {
+  //     newArr.push(e[i].value);
+  //   }
+  //   setCollectionData((collectionData) => ({
+  //     ...collectionData,
+  //     menu: newArr,
+  //   }));
 
-    for (let i = 0; i < options.length; i++) {
-      if (collectionData.menu.includes(options[i].value)) {
-        newOptions.push(options[i]);
-      }
-    }
+  //    onUpdateDepartment({ ...collectionData, menu: newArr }, id);
+  // }
 
-    return newOptions;
+  function onUpdateImage(files, id) {
+    const file = typeof files === "string" ? files : files[0];
+    const formdata = new FormData();
+    formdata.append("image", file);
+
+    // console.log(file);
+
+    updateImage({ formdata, id });
   }
 
-  function handleMenu(e) {
-    const newArr = [];
-    for (let i = 0; i < e.length; i++) {
-      newArr.push(e[i].value);
-    }
-    setCollectionData((collectionData) => ({
-      ...collectionData,
-      menu: newArr,
-    }));
-
-    onUpdateDepartment({ ...collectionData, menu: newArr }, id);
-  }
-
-  async function onUpdateDepartment(formdata, id) {
-    updateAdmin({ formdata, id });
+  async function onUpdateCollection(data) {
+    const formdata = {
+      type: data.type,
+      title: data.title,
+      description: data.description,
+    };
+    updateCollection({ formdata, id: data._id });
   }
 
   function onError(errors) {}
@@ -96,7 +101,7 @@ function EditCollectionForm({ onCloseModal, id }) {
           onChange={(e) => {
             const newVal = e.target.value;
             setCollectionData((data) => ({ ...data, title: newVal }));
-            onUpdateDepartment({ ...collectionData, title: newVal }, id);
+            onUpdateCollection({ ...collectionData, title: newVal });
           }}
         />
       </FormRow>
@@ -113,7 +118,7 @@ function EditCollectionForm({ onCloseModal, id }) {
           onChange={(e) => {
             const newVal = e.target.value;
             setCollectionData((data) => ({ ...data, type: newVal }));
-            onUpdateDepartment({ ...collectionData, type: newVal }, id);
+            onUpdateCollection({ ...collectionData, type: newVal });
           }}
         />
       </FormRow>
@@ -130,8 +135,23 @@ function EditCollectionForm({ onCloseModal, id }) {
           })}
           onChange={(e) => {
             const newVal = e.target.value;
-            setPassword(newVal);
-            onUpdatePassword(newVal, id);
+            setCollectionData((data) => ({ ...data, description: newVal }));
+            onUpdateCollection({ ...collectionData, description: newVal });
+          }}
+        />
+      </FormRow>
+
+      <FormRow label="Image" error={errors?.page?.message}>
+        <FileInput
+          id="file"
+          accept="image/*"
+          type="file"
+          {...register("bannerFile", {
+            required: "This field is required",
+          })}
+          onChange={(e) => {
+            const updatedValue = e.target.files;
+            onUpdateImage(updatedValue, id);
           }}
         />
       </FormRow>
@@ -143,7 +163,9 @@ function EditCollectionForm({ onCloseModal, id }) {
           gap: "20px",
         }}
       >
-        <Button>{"Done"}</Button>
+        <Button disabled={isUpdatingImage}>
+          {isUpdatingImage ? <SpinnerMini /> : "Done"}
+        </Button>
       </Stack>
     </Form>
   );
