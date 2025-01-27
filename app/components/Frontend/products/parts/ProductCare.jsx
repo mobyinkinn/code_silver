@@ -1,5 +1,5 @@
-import { Head1 } from '@/app/styledcomponents/Headings'
-import { ParaNormal } from '@/app/styledcomponents/Para';
+import { Head1 } from '@/app/styledcomponents/frontend/Headings'
+import { ParaNormal } from '@/app/styledcomponents/frontend/Para';
 import { Box, Button, Stack, TextField } from '@mui/material'
 import { BiLogoGmail } from "react-icons/bi";
 import { MdWifiCalling3 } from "react-icons/md";

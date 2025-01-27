@@ -1,0 +1,21 @@
+import { login as loginApi } from "../../services/apiAuth";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+
+export function useLogin() {
+  const router = useRouter();
+  const queryClient = useQueryClient();
+  const { mutate: login, isLoading } = useMutation({
+    mutationFn: ({ username, password }) => loginApi({ username, password }),
+    onSuccess: (admin) => {
+      queryClient.setQueryData(["admin"], admin.data.admin);
+      router.push("/admin/adminuser");
+    },
+    onError: (err) => {
+      toast.error("Provided username or password are incorrect");
+    },
+  });
+
+  return { login, isLoading };
+}

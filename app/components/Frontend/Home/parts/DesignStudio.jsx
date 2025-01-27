@@ -196,7 +196,7 @@ import banner1 from "../assets/10.jpg";
 import banner2 from "../assets/12.jpg";
 import banner3 from "../assets/13.jpg";
 import Designslider from "./Designslider";
-import { DarkGreenButtonSmall } from "@/app/styledcomponents/Button";
+import { DarkGreenButtonSmall } from "@/app/styledcomponents/frontend/Buttons";
 const DesignStudio = () => {
 
   const bannerImages = [banner3, banner2, banner1, banner3];
