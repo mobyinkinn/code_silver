@@ -7,8 +7,8 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Head1 } from "@/app/styledcomponents/Headings";
-import { ParaNormal } from "@/app/styledcomponents/Para";
+import { Head1 } from "@/app/styledcomponents/frontend/Headings";
+import { ParaNormal } from "@/app/styledcomponents/frontend/Para";
 const normalStyle = {
   height: "20px",
   cursor: "pointer",

@@ -12,7 +12,6 @@ function LoginForm() {
 
   function handleSubmit(e) {
     e.preventDefault();
-
     if (!username || !password) return;
 
     login(

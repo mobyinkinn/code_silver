@@ -59,7 +59,6 @@ function ConfirmEdit({
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
-
     const formDataImage = new FormData();
     formDataImage.append("image", file);
 
