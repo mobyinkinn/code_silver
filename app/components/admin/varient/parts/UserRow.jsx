@@ -6,8 +6,6 @@ import Table from "../../../ui/Table";
 import Modal from "../../../ui/Modal";
 import ConfirmDelete from "../../../ui/ConfirmDelete";
 
-// import { formatCurrency } from "../../../utils/helpers";
-// import { formatDistanceFromNow } from "../../../utils/helpers";
 import Menus from "../../../ui/Menus";
 import {
   HiArrowDownOnSquare,
@@ -17,12 +15,7 @@ import {
 } from "react-icons/hi2";
 import { HiEyeOff, HiPencil } from "react-icons/hi";
 import { useDeleteVarient } from "./useVarient";
-// import { useBlockAdmin, useDeleteAdmin, useUnblockAdmin } from "./useUser";
-// import EditCollectionForm from "@/app/components/features/collections/EditCollectionForm";
 import Image from "next/image";
-// import { useNavigate } from "react-router-dom";
-// import { useCheckout } from "../check-in-out/useCheckout";
-// import useDeleteBooking from "./useDeleteBooking";
 
 const Stacked = styled.div`
   font-size: 1rem;
@@ -44,28 +37,6 @@ function UserRow({
   user: { _id: id, name, noOfProducts, prices, values, weights },
 }) {
   const { deleteVarient, isDeleting } = useDeleteVarient();
-  //   const navigate = useNavigate();
-  //   const { checkout, isCheckingOut } = useCheckout();
-  //   const { deleteBooking, isDeleting } = useDeleteBooking();
-  // const { blockAdmin, isBlocking } = useBlockAdmin();
-  // const { unblockAdmin, isUnblocking } = useUnblockAdmin();
-  // const { deleteAdmin, isDeleting } = useDeleteAdmin();
-
-  // const handleToggleStatus = () => {
-  //   if (status === true) {
-  //     blockAdmin(id); // Call block API if active
-  //   } else {
-  //     unblockAdmin(id); // Call unblock API if inactive
-  //   }
-  // };
-
-  // let convertedStatus;
-  // if (status === true) {
-  //   convertedStatus = "active";
-  // } else {
-  //   convertedStatus = "inactive";
-  // }
-  // let status = "active";
 
   const statusToTagName = {
     unconfirmed: "blue",
@@ -98,25 +69,8 @@ function UserRow({
         </span>
       </Stacked>
 
-      {/* <Stacked>
-        <span>
-          {menu.map((el, i) => (
-            <span key={i}> {el + " "} </span>
-          ))}
-        </span>
-      </Stacked> */}
-
-      {/* <Tag type={statusToTagName[status]}>{status.replace("-", " ")}</Tag> */}
-
-      {/* <Amount>{formatCurrency(totalPrice)}</Amount> */}
-
       <Modal>
         <Menus.Menu>
-          {/* <Menus.Button
-            icon={status ? <HiEye /> : <HiEyeOff />}
-            // onClick={handleToggleStatus}
-            // disabled={isBlocking || isUnblocking}
-          ></Menus.Button> */}
           <Modal.Open opens="banner-form">
             <Menus.Button icon={<HiPencil />} />
           </Modal.Open>
@@ -131,7 +85,7 @@ function UserRow({
           <ConfirmDelete
             resourceName="Banner"
             disabled={isDeleting}
-            onConfirm={() => deleteCollection(id)}
+            onConfirm={() => deleteVarient(id)}
           />
         </Modal.Window>
       </Modal>

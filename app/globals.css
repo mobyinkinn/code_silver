@@ -1,9 +1,8 @@
-/* * {
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
-
 
 /* Entire scrollbar */
 ::-webkit-scrollbar {
@@ -105,7 +104,6 @@ body {
   left: 0;
 }
 
-
 .nav-link {
   text-decoration: none;
   margin: 0 10px;
@@ -117,22 +115,12 @@ body {
   color: #fb5457;
 }
 
-
 @font-face {
   font-family: "Euclid Flex";
   src: url("/fonts/EuclidFlex-Regular.woff2") format("woff2"),
-       url("/fonts/EuclidFlex-Regular.woff") format("woff");
+    url("/fonts/EuclidFlex-Regular.woff") format("woff");
   font-weight: 100;
   font-style: normal;
-}
-
- */
-
-
- * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
 }
 
 /* Entire scrollbar */

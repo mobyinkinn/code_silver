@@ -4,7 +4,7 @@ import TableOperations from "../../../ui/TableOperations";
 import { useUserContext } from "./UserContext";
 import Modal from "@/app/components/ui/Modal";
 import Button from "@/app/components/ui/Button";
-// import CreateCollectionForm from "@/app/components/features/collections/CreateCollectionForm";
+import CreateVarientForm from "@/app/components/features/varients/CreateVarientForm";
 
 function UserTableOperations() {
   // const { filter, setFilter } = useUserContext();
@@ -32,11 +32,11 @@ function UserTableOperations() {
       <Modal>
         <Modal.Open opens="department-form">
           <Button variation="primary" size="medium">
-            Add Collection
+            Add Varient
           </Button>
         </Modal.Open>
         <Modal.Window name="department-form">
-          {/* <CreateCollectionForm /> */}
+          <CreateVarientForm />
         </Modal.Window>
       </Modal>
     </TableOperations>

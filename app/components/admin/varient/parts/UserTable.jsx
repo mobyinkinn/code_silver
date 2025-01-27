@@ -26,7 +26,7 @@ function UserTable() {
   if (!filteredUsers?.length) return <Empty resourceName="Admins" />;
   return (
     <Menus>
-      <Table columns="1fr 1fr 4fr 3.2rem">
+      <Table columns="1.4fr 1fr 1fr 3.2rem">
         <Table.Header>
           <div>Title</div>
           <div>Type</div>

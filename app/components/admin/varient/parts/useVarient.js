@@ -22,20 +22,6 @@ export const useVarient = () => {
   return { data, isLoading, error };
 };
 
-export const useCurrentVarient = () => {
-  const {
-    data: currVarient,
-    isLoading: isFetching,
-    error,
-  } = useQuery({
-    queryKey: ["Varient"],
-    queryFn: fetchVarient,
-    staleTime: 1 * 1000,
-  });
-
-  return { currVarient, isFetching, error };
-};
-
 export const useBlockVarient = () => {
   const queryClient = useQueryClient();
 
