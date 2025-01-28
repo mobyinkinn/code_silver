@@ -1,3 +1,4 @@
+"use client";
 import { useForm } from "react-hook-form";
 
 import Input from "../../ui/Input";
@@ -7,9 +8,9 @@ import FileInput from "../../ui/FileInput";
 import Textarea from "../../ui/Textarea";
 import FormRow from "../../ui/FormRow";
 
-import { Stack } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import {
   useCollection,
@@ -17,6 +18,8 @@ import {
   useUpdateImage,
 } from "../../admin/collection/parts/useUser";
 import SpinnerMini from "../../ui/SpinnerMini";
+import Spinner from "../../ui/Spinner";
+import { useRouter } from "next/navigation";
 
 const options = [
   { value: "admin", label: "Admin" },
@@ -39,37 +42,25 @@ const options = [
   { value: "tips", label: "Health Tips" },
 ];
 
-function EditCollectionForm({ onCloseModal, id }) {
-  const { data, isLoading: isWorking } = useCollection();
+function EditCollectionForm({ id }) {
+  const { data, isPending: isWorking } = useCollection();
   const { updateImage, isUpdatingImage } = useUpdateImage();
-  const filteredData = data.filter((el) => el._id === id);
-  const { register, handleSubmit, reset, getValues, formState } = useForm({
-    defaultValues: {},
-  });
+  const router = useRouter();
+
   const { updateCollection, isUpdating } = useUpdateCollection();
-  const [collectionData, setCollectionData] = useState(filteredData[0]);
+  const [collectionData, setCollectionData] = useState({});
 
-  const { errors } = formState;
-
-  // function handleMenu(e) {
-  //   const newArr = [];
-  //   for (let i = 0; i < e.length; i++) {
-  //     newArr.push(e[i].value);
-  //   }
-  //   setCollectionData((collectionData) => ({
-  //     ...collectionData,
-  //     menu: newArr,
-  //   }));
-
-  //    onUpdateDepartment({ ...collectionData, menu: newArr }, id);
-  // }
+  useEffect(() => {
+    const filteredData = data?.filter((el) => el._id === id);
+    if (filteredData) {
+      setCollectionData(filteredData[0]);
+    }
+  }, [isWorking]);
 
   function onUpdateImage(files, id) {
     const file = typeof files === "string" ? files : files[0];
     const formdata = new FormData();
     formdata.append("image", file);
-
-    // console.log(file);
 
     updateImage({ formdata, id });
   }
@@ -83,21 +74,24 @@ function EditCollectionForm({ onCloseModal, id }) {
     updateCollection({ formdata, id: data._id });
   }
 
-  function onError(errors) {}
+  if (isWorking) {
+    return <Spinner />;
+  }
+
+  if (!data || collectionData == {}) {
+    return <div>No data availabe</div>;
+  }
   return (
     <Form
-      // onSubmit={handleSubmit(onSubmit, onError)}
-      type={onCloseModal ? "modal" : "regular"}
+    // onSubmit={handleSubmit(onSubmit, onError)}
+    // type={onCloseModal ? "modal" : "regular"}
     >
-      <FormRow label="Title" error={errors?.page?.message}>
+      <FormRow label="Title">
         <Input
           disabled={isWorking}
           type="text"
-          value={collectionData.title}
+          value={collectionData?.title || ""}
           id="title"
-          {...register("title", {
-            required: "This field is required",
-          })}
           onChange={(e) => {
             const newVal = e.target.value;
             setCollectionData((data) => ({ ...data, title: newVal }));
@@ -106,15 +100,12 @@ function EditCollectionForm({ onCloseModal, id }) {
         />
       </FormRow>
 
-      <FormRow label="Type" error={errors?.page?.message}>
+      <FormRow label="Type">
         <Input
           disabled={isWorking}
           type="text"
-          value={collectionData.type}
+          value={collectionData.type || ""}
           id="type"
-          {...register("type", {
-            required: "This field is required",
-          })}
           onChange={(e) => {
             const newVal = e.target.value;
             setCollectionData((data) => ({ ...data, type: newVal }));
@@ -123,16 +114,13 @@ function EditCollectionForm({ onCloseModal, id }) {
         />
       </FormRow>
 
-      <FormRow label="Description" error={errors?.page?.message}>
+      <FormRow label="Description">
         <Input
           disabled={isWorking}
-          value={collectionData.description}
+          value={collectionData.description || ""}
           type="text"
           id="description"
           placeholder="Type new password..."
-          {...register("description", {
-            required: "This field is required",
-          })}
           onChange={(e) => {
             const newVal = e.target.value;
             setCollectionData((data) => ({ ...data, description: newVal }));
@@ -141,14 +129,11 @@ function EditCollectionForm({ onCloseModal, id }) {
         />
       </FormRow>
 
-      <FormRow label="Image" error={errors?.page?.message}>
+      <FormRow label="Image">
         <FileInput
           id="file"
           accept="image/*"
           type="file"
-          {...register("bannerFile", {
-            required: "This field is required",
-          })}
           onChange={(e) => {
             const updatedValue = e.target.files;
             onUpdateImage(updatedValue, id);
@@ -163,6 +148,22 @@ function EditCollectionForm({ onCloseModal, id }) {
           gap: "20px",
         }}
       >
+        <Stack
+          onClick={() => {
+            router.push("/admin/collections");
+          }}
+          sx={{
+            border: "1px solid #333",
+            borderRadius: "5px",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "0 10px",
+            cursor: "Pointer",
+          }}
+        >
+          <Typography color="#333">Cancel</Typography>
+        </Stack>
+
         <Button disabled={isUpdatingImage}>
           {isUpdatingImage ? <SpinnerMini /> : "Done"}
         </Button>

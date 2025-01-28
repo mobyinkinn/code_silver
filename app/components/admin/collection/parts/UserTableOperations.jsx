@@ -5,8 +5,10 @@ import { useUserContext } from "./UserContext";
 import Modal from "@/app/components/ui/Modal";
 import Button from "@/app/components/ui/Button";
 import CreateCollectionForm from "@/app/components/features/collections/CreateCollectionForm";
+import { useRouter } from "next/navigation";
 
 function UserTableOperations() {
+  const router = useRouter();
   // const { filter, setFilter } = useUserContext();
   return (
     <TableOperations>
@@ -29,16 +31,21 @@ function UserTableOperations() {
           { value: "name-asc", label: "Sort by name (A - Z)" },
         ]}
       />
-      <Modal>
+      <Button
+        onClick={() => router.push("/admin/collections/add")}
+        variation="primary"
+        size="medium"
+      >
+        Add Collection
+      </Button>
+      {/* <Modal>
         <Modal.Open opens="department-form">
-          <Button variation="primary" size="medium">
-            Add Collection
-          </Button>
+         
         </Modal.Open>
         <Modal.Window name="department-form">
           <CreateCollectionForm />
         </Modal.Window>
-      </Modal>
+      </Modal> */}
     </TableOperations>
   );
 }

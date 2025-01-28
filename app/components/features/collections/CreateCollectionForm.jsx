@@ -1,3 +1,5 @@
+"use client";
+
 import { useForm } from "react-hook-form";
 
 import Input from "../../ui/Input";
@@ -15,6 +17,7 @@ import { createCollection } from "../../services/api.collection";
 // import Select from "react-select";
 import { useState } from "react";
 import { useCreateAdmin } from "../../admin/admin/parts/useUser";
+import { useRouter } from "next/navigation";
 
 const options = [
   { value: "admin", label: "Admin" },
@@ -41,6 +44,7 @@ function CreateCollectionForm({ cabinToEdit = {}, onCloseModal }) {
   //   const { id: editId, ...editValues } = cabinToEdit;
   //   const isEditSession = Boolean(editId);
 
+  const router = useRouter();
   const { register, handleSubmit, reset, getValues, formState } = useForm({
     defaultValues: {},
   });
@@ -141,7 +145,7 @@ function CreateCollectionForm({ cabinToEdit = {}, onCloseModal }) {
           variation="secondary"
           size="medium"
           type="reset"
-          onClick={() => onCloseModal?.()}
+          onClick={() => router.push("/admin/collections")}
         >
           Cancel
         </Button>

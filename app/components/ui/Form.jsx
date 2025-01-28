@@ -5,7 +5,7 @@ const Form = styled.form`
     props.type === "regular" &&
     css`
       padding: 1.2rem 2.3rem;
-      width: 600px;
+      width: 700px;
       margin: 0 auto;
 
       /* Box */

@@ -124,7 +124,7 @@ export const useUpdatePassword = () => {
 
 export const useCreateAdmin = () => {
   const queryClient = useQueryClient();
-  const { mutate: createAdmin, isLoading: isCreating } = useMutation({
+  const { mutate: createAdmin, isPending: isCreating } = useMutation({
     mutationFn: createTheAdmin,
     onSuccess: () => {
       queryClient.invalidateQueries(["Admins"]);

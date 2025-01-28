@@ -64,3 +64,35 @@ Button.defaultProps = {
   size: "medium",
 };
 export default Button;
+
+const IconButton = styled.button`
+  background: none;
+  border: none;
+  padding: 0.4rem;
+  border-radius: var(--border-radius-sm);
+  transition: all 0.2s;
+  width: 2.4rem;
+  height: 2.4rem;
+  position: absolute;
+  top: -1rem;
+  right: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--color-grey-500);
+
+  &:hover {
+    background-color: var(--color-grey-100);
+  }
+
+  & svg {
+    width: 2.4rem;
+    height: 2.4rem;
+    /* Sometimes we need both */
+    /* fill: var(--color-grey-500);
+    stroke: var(--color-grey-500); */
+    color: var(--color-grey-500);
+  }
+`;
+
+export { IconButton };

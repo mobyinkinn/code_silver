@@ -20,6 +20,8 @@ import { useDeleteCollection } from "./useUser";
 // import { useBlockAdmin, useDeleteAdmin, useUnblockAdmin } from "./useUser";
 import EditCollectionForm from "@/app/components/features/collections/EditCollectionForm";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import Button, { IconButton } from "@/app/components/ui/Button";
 // import { useNavigate } from "react-router-dom";
 // import { useCheckout } from "../check-in-out/useCheckout";
 // import useDeleteBooking from "./useDeleteBooking";
@@ -64,6 +66,8 @@ function UserRow({ user: { _id: id, title, type, description, image } }) {
   //   convertedStatus = "inactive";
   // }
   // let status = "active";
+
+  const router = useRouter();
 
   const statusToTagName = {
     unconfirmed: "blue",
@@ -111,12 +115,22 @@ function UserRow({ user: { _id: id, title, type, description, image } }) {
             // onClick={handleToggleStatus}
             // disabled={isBlocking || isUnblocking}
           ></Menus.Button> */}
-          <Modal.Open opens="banner-form">
-            <Menus.Button icon={<HiPencil />} />
-          </Modal.Open>
-          <Modal.Window name="banner-form">
-            <EditCollectionForm id={id} />
-          </Modal.Window>
+          {/* <Modal.Open opens="banner-form">
+            <Menus.Button
+              icon={<HiPencil />}
+              onClick={() => router.push(`/admin/collections/add?id=${id}`)}
+            />
+          </Modal.Open> */}
+          {/* <Modal.Window name="banner-form"> */}
+          {/* <EditCollectionForm id={id} /> */}
+          {/* </Modal.Window> */}
+          <div style={{ position: "relative" }}>
+            <IconButton
+              onClick={() => router.push(`/admin/collections/edit/${id}`)}
+            >
+              <HiPencil />
+            </IconButton>
+          </div>
           <Modal.Open opens="delete">
             <Menus.Button icon={<HiTrash />}></Menus.Button>
           </Modal.Open>
