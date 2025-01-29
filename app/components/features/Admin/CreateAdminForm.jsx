@@ -40,6 +40,7 @@ function CreateAdminForm({ cabinToEdit = {}, onCloseModal }) {
   //   const { id: editId, ...editValues } = cabinToEdit;
   //   const isEditSession = Boolean(editId);
 
+  const { createAdmin, isCreating } = useCreateAdmin();
   const { register, handleSubmit, reset, getValues, formState } = useForm({
     defaultValues: {},
   });
@@ -47,7 +48,7 @@ function CreateAdminForm({ cabinToEdit = {}, onCloseModal }) {
 
   //   const { isEditing, editCabin } = useEditCabin();
   const [menu, setMenu] = useState([]);
-const [isshow, setisshow] = useState("")
+  const [isshow, setisshow] = useState("");
   const isWorking = isCreating;
 
   function handleMenu(e) {
@@ -59,18 +60,10 @@ const [isshow, setisshow] = useState("")
   }
 
   function onSubmit(data) {
-    console.log("Department data: ", data);
-
     const formdata = {
       username: data.username,
       email: data.email,
-      name: data.name,
       password: data.password,
-      status: true,
-      submenu: [],
-      donations: [],
-      isSuperAdmin: true,
-      menu,
     };
     console.log("Department formdata: ", formdata);
 
@@ -86,7 +79,7 @@ const [isshow, setisshow] = useState("")
   }
   return (
     <Form
-    style={{overflow:"visible"}}
+      style={{ overflow: "visible" }}
       onSubmit={handleSubmit(onSubmit, onError)}
       type={onCloseModal ? "modal" : "regular"}
     >
@@ -112,7 +105,7 @@ const [isshow, setisshow] = useState("")
         />
       </FormRow>
 
-      <FormRow label="Name" error={errors?.page?.message}>
+      {/* <FormRow label="Name" error={errors?.page?.message}>
         <Input
           disabled={isWorking}
           type="name"
@@ -121,12 +114,12 @@ const [isshow, setisshow] = useState("")
             required: "This field is required",
           })}
         />
-      </FormRow>
+      </FormRow> */}
 
       <FormRow label="Password" error={errors?.page?.message}>
         <Input
           disabled={isWorking}
-          type={!isshow?"password":"name"}
+          type={!isshow ? "password" : "name"}
           id="password"
           {...register("password", {
             required: "This field is required",
@@ -134,7 +127,7 @@ const [isshow, setisshow] = useState("")
         />
       </FormRow>
 
-      <FormRow label="Permissions" error={errors?.page?.message}>
+      {/* <FormRow label="Permissions" error={errors?.page?.message}>
         <Select
           isMulti
           name="colors"
@@ -145,7 +138,7 @@ const [isshow, setisshow] = useState("")
             handleMenu(e);
           }}
         />
-      </FormRow>
+      </FormRow> */}
 
       <Stack
         direction="row"
