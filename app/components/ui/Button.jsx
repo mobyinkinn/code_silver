@@ -80,6 +80,7 @@ const IconButton = styled.button`
   justify-content: center;
   align-items: center;
   color: var(--color-grey-500);
+  cursor: pointer;
 
   &:hover {
     background-color: var(--color-grey-100);

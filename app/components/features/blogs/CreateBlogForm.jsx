@@ -13,11 +13,11 @@ import FormRow from "../../ui/FormRow";
 // import { useCreateDepartment } from "../../admin/departments/parts/useDepartment";
 import { Stack } from "@mui/material";
 import SpinnerMini from "../../ui/SpinnerMini";
-import { createCollection } from "../../services/api.collection";
 // import Select from "react-select";
 import { useState } from "react";
 import { useCreateAdmin } from "../../admin/admin/parts/useUser";
 import { useRouter } from "next/navigation";
+import { useCreateBlog } from "../../admin/blog/parts/useBlog";
 
 const options = [
   { value: "admin", label: "Admin" },
@@ -40,43 +40,33 @@ const options = [
   { value: "tips", label: "Health Tips" },
 ];
 
-function CreateCollectionForm() {
+function CreateBlogForm() {
   //   const { id: editId, ...editValues } = cabinToEdit;
   //   const isEditSession = Boolean(editId);
-
   const router = useRouter();
+  const { createBlog, isCreating } = useCreateBlog();
   const { register, handleSubmit, reset, getValues, formState } = useForm({
     defaultValues: {},
   });
   const { errors } = formState;
-
-  // const { isCreating, createDepartment } = useCreateDepartment();
-  //   const { isEditing, editCabin } = useEditCabin();
-  const { isCreating, createAdmin } = useCreateAdmin();
-  // const [menu, setMenu] = useState([]);
-  const [isshow, setisshow] = useState("");
   const isWorking = isCreating;
-
-  // function handleMenu(e) {
-  //   const newArr = [];
-  //   for (let i = 0; i < e.length; i++) {
-  //     newArr.push(e[i].value);
-  //   }
-  //   setMenu(newArr);
-  // }
 
   function onSubmit(data) {
     const file = typeof data.image === "string" ? data.image : data.image[0];
+    const date = new Date();
+    console.log(data);
 
     const formdata = new FormData();
     formdata.append("image", file);
     formdata.append("title", data.title);
-    formdata.append("description", data.description);
-    formdata.append("type", data.type);
+    formdata.append("content", data.content);
+    formdata.append("writer", data.writer);
+    formdata.append("date", date);
 
-    createCollection(formdata, {
+    createBlog(formdata, {
       onSuccess: (formdata) => {
         reset();
+        router.push("/admin/blogs");
       },
     });
   }
@@ -99,23 +89,23 @@ function CreateCollectionForm() {
         />
       </FormRow>
 
-      <FormRow label="Type" error={errors?.page?.message}>
+      <FormRow label="Content" error={errors?.page?.message}>
         <Input
           disabled={isWorking}
           type="text"
-          id="text"
-          {...register("type", {
+          id="content"
+          {...register("content", {
             required: "This field is required",
           })}
         />
       </FormRow>
 
-      <FormRow label="Description" error={errors?.page?.message}>
+      <FormRow label="Writer" error={errors?.page?.message}>
         <Input
           disabled={isWorking}
           type="text"
-          id="description"
-          {...register("description", {
+          id="writer"
+          {...register("writer", {
             required: "This field is required",
           })}
         />
@@ -136,6 +126,7 @@ function CreateCollectionForm() {
         direction="row"
         sx={{
           gap: "20px",
+          marginTop: "30px",
           justifyContent: "end",
         }}
       >
@@ -143,16 +134,16 @@ function CreateCollectionForm() {
           variation="secondary"
           size="medium"
           type="reset"
-          onClick={() => router.push("/admin/collections")}
+          onClick={() => router.push("/admin/blogs")}
         >
           Cancel
         </Button>
         <Button size="medium" variation="primary" disabled={isWorking}>
-          {isWorking ? <SpinnerMini /> : "Create new admin"}
+          {isWorking ? <SpinnerMini /> : "Create New Blog"}
         </Button>
       </Stack>
     </Form>
   );
 }
 
-export default CreateCollectionForm;
+export default CreateBlogForm;

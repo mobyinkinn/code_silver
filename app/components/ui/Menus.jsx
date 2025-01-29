@@ -48,9 +48,11 @@ const StyledButton = styled.button`
   border: none;
   font-size: 0.9rem;
   transition: all 0.2s;
+  cursor: pointer;
 
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 1rem;
 
   &:hover {
