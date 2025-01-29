@@ -11,8 +11,7 @@ import FormRow from "../../ui/FormRow";
 // import { useCreateDepartment } from "../../admin/departments/parts/useDepartment";
 import { Stack } from "@mui/material";
 import SpinnerMini from "../../ui/SpinnerMini";
-// import { createAdmin } from "../../services/api.User";
-import { useCreateAdmin } from "../../admin/admin/parts/useUser";
+import { createAdmin } from "../../services/api.User";
 import Select from "react-select";
 import { useState } from "react";
 
