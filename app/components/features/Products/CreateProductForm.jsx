@@ -1,7 +1,6 @@
 "use client";
 
 import { useForm } from "react-hook-form";
-
 import Input from "../../ui/Input";
 import Form from "../../ui/Form";
 import Button from "../../ui/Button";
@@ -19,6 +18,7 @@ import { useState } from "react";
 import { useCreateAdmin } from "../../admin/admin/parts/useUser";
 import { useCreateVarient } from "../../admin/varient/parts/useVarient";
 import { useRouter } from "next/navigation";
+import { useCreateProduct } from "../../admin/product/parts/useUser";
 
 const options = [
   { value: "admin", label: "Admin" },
@@ -41,7 +41,7 @@ const options = [
   { value: "tips", label: "Health Tips" },
 ];
 
-function CreateVarientForm({ cabinToEdit = {}, onCloseModal }) {
+function CreateProductForm({ cabinToEdit = {}, onCloseModal }) {
   //   const { id: editId, ...editValues } = cabinToEdit;
   //   const isEditSession = Boolean(editId);
   const router = useRouter();
@@ -51,7 +51,8 @@ function CreateVarientForm({ cabinToEdit = {}, onCloseModal }) {
   });
   const { errors } = formState;
 
-  const { isCreating, createVarient } = useCreateVarient();
+  // const { isCreating, createVarient } = useCreateVarient();
+  const { isCreating, createProduct } = useCreateProduct();
   const [isshow, setisshow] = useState("");
   const isWorking = isCreating;
 
@@ -64,28 +65,20 @@ function CreateVarientForm({ cabinToEdit = {}, onCloseModal }) {
   // }
 
   function onSubmit(data) {
-    const name = data.name;
-    let values = data.values.split(",");
-    let prices = data.prices.split(",");
+    const file = typeof data.image === "string" ? data.image : data.image[0];
 
-    if (values.length !== prices.length) {
-      alert("Values are not equal to prices");
-      return;
-    }
+    const formdata = new FormData();
+    formdata.append("image", file);
+    formdata.append("name", data.name);
+    formdata.append("price", data.price);
+    formdata.append("description", data.description);
+    formdata.append("tag", data.tag);
+    formdata.append("collectionId", "674e9b67f9272afb1dee1bbf");
+    formdata.append("medias", file);
+    formdata.append("weight", 0.3);
+    formdata.append("varients", "674ed79586a6244b05c98bc5");
 
-    for (let i = 0; i < values.length; i++) {
-      values[i] = values[i].trim();
-      prices[i] = Number(prices[i].trim());
-    }
-
-    const formdata = {
-      noOfProducts: "0",
-      name,
-      values,
-      prices,
-    };
-
-    createVarient(formdata, {
+    createProduct(formdata, {
       onSuccess: (data) => {
         reset();
         onCloseModal?.();
@@ -112,25 +105,60 @@ function CreateVarientForm({ cabinToEdit = {}, onCloseModal }) {
         />
       </FormRow>
 
-      <FormRow label="Values" error={errors?.page?.message}>
+      <FormRow label="Price" error={errors?.page?.message}>
         <Input
           disabled={isWorking}
-          name="values"
+          name="price"
           type="text"
-          id="values"
-          {...register("values", {
+          id="price"
+          {...register("price", {
             required: "This field is required",
           })}
         />
       </FormRow>
 
-      <FormRow label="Prices" error={errors?.page?.message}>
+      <FormRow label="Description" error={errors?.page?.message}>
         <Input
           disabled={isWorking}
           type="text"
-          id="prices"
-          name="prices"
-          {...register("prices", {
+          id="description"
+          name="description"
+          {...register("description", {
+            required: "This field is required",
+          })}
+        />
+      </FormRow>
+
+      <FormRow label="Tag" error={errors?.page?.message}>
+        <Input
+          disabled={isWorking}
+          type="text"
+          id="tag"
+          name="tag"
+          {...register("tag", {
+            required: "This field is required",
+          })}
+        />
+      </FormRow>
+
+      {/* <FormRow label="Collection Name" error={errors?.page?.message}>
+        <Input
+          disabled={isWorking}
+          type="text"
+          id="collection"
+          name="collection"
+          {...register("collection", {
+            required: "This field is required",
+          })}
+        />
+      </FormRow> */}
+
+      <FormRow label={"Image"}>
+        <FileInput
+          id="file"
+          accept="image/*"
+          type="file"
+          {...register("image", {
             required: "This field is required",
           })}
         />
@@ -152,11 +180,11 @@ function CreateVarientForm({ cabinToEdit = {}, onCloseModal }) {
           Cancel
         </Button>
         <Button size="medium" variation="primary" disabled={isWorking}>
-          {isWorking ? <SpinnerMini /> : "Create new admin"}
+          {isWorking ? <SpinnerMini /> : "Create New Product"}
         </Button>
       </Stack>
     </Form>
   );
 }
 
-export default CreateVarientForm;
+export default CreateProductForm;

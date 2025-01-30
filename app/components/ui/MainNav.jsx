@@ -90,6 +90,31 @@ function MainNav() {
             <span>Discounts</span>
           </StyledNavLink>
         </li>
+        <li>
+          <StyledNavLink href="/admin/varients">
+            <HiOutlineLogout />
+            <span>Varients</span>
+          </StyledNavLink>
+        </li>
+
+        <li>
+          <StyledNavLink href="/admin/blogs">
+            <HiOutlineLogout />
+            <span>Blogs</span>
+          </StyledNavLink>
+        </li>
+        <li>
+          <StyledNavLink href="/admin/reviews">
+            <HiOutlineLogout />
+            <span>Reviews</span>
+          </StyledNavLink>
+        </li>
+        <li>
+          <StyledNavLink href="/admin/comments">
+            <HiOutlineLogout />
+            <span>Comments</span>
+          </StyledNavLink>
+        </li>
       </NavList>
     </nav>
   );

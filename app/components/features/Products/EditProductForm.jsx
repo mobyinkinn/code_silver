@@ -46,7 +46,7 @@ const options = [
   { value: "tips", label: "Health Tips" },
 ];
 
-function EditVarientForm({ onCloseModal, id }) {
+function EditProductForm({ onCloseModal, id }) {
   const { data, isPending: isWorking } = useVarient();
   // const { updateImage, isUpdatingImage } = useUpdateImage();
   const { updateCollection, isUpdating } = useUpdateVarient();
@@ -177,4 +177,4 @@ function EditVarientForm({ onCloseModal, id }) {
   );
 }
 
-export default EditVarientForm;
+export default EditProductForm;

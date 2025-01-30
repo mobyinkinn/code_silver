@@ -13,13 +13,13 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
 export const useVarient = () => {
-  const { data, isLoading, error } = useQuery({
+  const { data, isPending, error } = useQuery({
     queryKey: ["Varients"],
     queryFn: fetchAllVarients,
     staleTime: 5 * 60 * 1000,
   });
 
-  return { data, isLoading, error };
+  return { data, isPending, error };
 };
 
 export const useBlockVarient = () => {

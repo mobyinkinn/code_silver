@@ -16,6 +16,8 @@ import {
 import { HiEyeOff, HiPencil } from "react-icons/hi";
 import { useDeleteVarient } from "./useVarient";
 import Image from "next/image";
+import { IconButton } from "@/app/components/ui/Button";
+import { useRouter } from "next/navigation";
 
 const Stacked = styled.div`
   font-size: 1rem;
@@ -37,6 +39,7 @@ function UserRow({
   user: { _id: id, name, noOfProducts, prices, values, weights },
 }) {
   const { deleteVarient, isDeleting } = useDeleteVarient();
+  const router = useRouter();
 
   const statusToTagName = {
     unconfirmed: "blue",
@@ -71,12 +74,13 @@ function UserRow({
 
       <Modal>
         <Menus.Menu>
-          <Modal.Open opens="banner-form">
-            <Menus.Button icon={<HiPencil />} />
-          </Modal.Open>
-          <Modal.Window name="banner-form">
-            {/* <EditCollectionForm id={id} /> */}
-          </Modal.Window>
+          <div style={{ position: "relative" }}>
+            <IconButton
+              onClick={() => router.push(`/admin/varients/edit/${id}`)}
+            >
+              <HiPencil />
+            </IconButton>
+          </div>
           <Modal.Open opens="delete">
             <Menus.Button icon={<HiTrash />}></Menus.Button>
           </Modal.Open>
