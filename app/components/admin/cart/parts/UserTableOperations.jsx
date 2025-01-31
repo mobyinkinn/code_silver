@@ -31,13 +31,13 @@ function UserTableOperations() {
           { value: "name-asc", label: "Sort by name (A - Z)" },
         ]}
       />
-      {/* <Button
+      <Button
         onClick={() => router.push("/admin/collections/add")}
         variation="primary"
         size="medium"
       >
         Add Collection
-      </Button> */}
+      </Button>
       {/* <Modal>
         <Modal.Open opens="department-form">
          

@@ -12,7 +12,16 @@ const StyledLogo = styled.div`
 function Logo({ src }) {
   return (
     <StyledLogo>
-      <Image src={src} fill objectFit="contain" alt="Logo" />
+      <Image
+        src={src}
+        // fill
+        // objectFit="contain"
+        style={{
+          width: "100%",
+          height: "80px",
+        }}
+        alt="Logo"
+      />
     </StyledLogo>
   );
 }

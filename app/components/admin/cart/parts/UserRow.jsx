@@ -16,9 +16,9 @@ import {
   HiTrash,
 } from "react-icons/hi2";
 import { HiEyeOff, HiPencil } from "react-icons/hi";
-import { useDeleteOrder } from "./useOrders";
+import { useDeleteCart } from "./useCart";
 // import { useBlockAdmin, useDeleteAdmin, useUnblockAdmin } from "./useUser";
-// import EditOrderForm from "@/app/components/features/collections/EditOrderForm";
+// import EditCartForm from "@/app/components/features/collections/EditCartForm";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Button, { IconButton } from "@/app/components/ui/Button";
@@ -43,9 +43,9 @@ const Stacked = styled.div`
 `;
 
 function UserRow({
-  user: { _id: id, address, deliveryMethod, notes, date, isDelivered, isPaid },
+  user: { _id: id, address, price, totalWt, eta, finalPrice, countryCode },
 }) {
-  const { deleteOrder, isDeleting } = useDeleteOrder();
+  const { deleteCart, isDeleting } = useDeleteCart();
   //   const navigate = useNavigate();
   //   const { checkout, isCheckingOut } = useCheckout();
   //   const { deleteBooking, isDeleting } = useDeleteBooking();
@@ -85,13 +85,17 @@ function UserRow({
       </Stacked>
 
       <Stacked>
-        <span>Notes</span>
-        <span>{notes}</span>
+        <span>Eta</span>
+        <span>{eta}</span>
       </Stacked>
 
       <Stacked>
-        <span>Delivery Method</span>
-        <span>{deliveryMethod}</span>
+        {/* <Image src={image} alt={title} width={50} height={50} /> */}
+      </Stacked>
+
+      <Stacked>
+        <span>Country Code</span>
+        <span>{countryCode}</span>
       </Stacked>
 
       {/* <Stacked>
@@ -106,38 +110,23 @@ function UserRow({
 
       {/* <Amount>{formatCurrency(totalPrice)}</Amount> */}
 
-      <Stacked>
-        <span>Date ordered</span>
-        <span>{date.split("T")[0]}</span>
-      </Stacked>
-
-      <Stacked>
-        <span>Paid</span>
-        <span>{isPaid ? "Yes" : "No"}</span>
-      </Stacked>
-
-      <Stacked>
-        <span>Delivered</span>
-        <span>{isDelivered ? "Yes" : "No"}</span>
-      </Stacked>
-
-      {/* <Modal>
-        <Menus.Menu> */}
-      {/* <Menus.Button
+      <Modal>
+        <Menus.Menu>
+          {/* <Menus.Button
             icon={status ? <HiEye /> : <HiEyeOff />}
             // onClick={handleToggleStatus}
             // disabled={isBlocking || isUnblocking}
           ></Menus.Button> */}
-      {/* <Modal.Open opens="banner-form">
+          {/* <Modal.Open opens="banner-form">
             <Menus.Button
               icon={<HiPencil />}
               onClick={() => router.push(`/admin/collections/add?id=${id}`)}
             />
           </Modal.Open> */}
-      {/* <Modal.Window name="banner-form"> */}
-      {/* <EditOrderForm id={id} /> */}
-      {/* </Modal.Window> */}
-      {/* <div style={{ position: "relative" }}>
+          {/* <Modal.Window name="banner-form"> */}
+          {/* <EditCartForm id={id} /> */}
+          {/* </Modal.Window> */}
+          <div style={{ position: "relative" }}>
             <IconButton
               onClick={() => router.push(`/admin/collections/edit/${id}`)}
             >
@@ -152,10 +141,10 @@ function UserRow({
           <ConfirmDelete
             resourceName="Banner"
             disabled={isDeleting}
-            onConfirm={() => deleteOrder(id)}
+            onConfirm={() => deleteCart(id)}
           />
         </Modal.Window>
-      </Modal> */}
+      </Modal>
     </Table.Row>
   );
 }
