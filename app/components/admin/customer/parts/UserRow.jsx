@@ -128,13 +128,13 @@ function UserRow({
 
       {/* <Amount>{formatCurrency(totalPrice)}</Amount> */}
 
-      <Modal>
+      {/* <Modal>
         <Menus.Menu>
-          {/* <Menus.Button
+           <Menus.Button
             icon={status ? <HiEye /> : <HiEyeOff />}
             // onClick={handleToggleStatus}
             // disabled={isBlocking || isUnblocking}
-          ></Menus.Button> */}
+          ></Menus.Button> 
           <Modal.Open opens="banner-form">
             <Menus.Button icon={<HiPencil />} />
           </Modal.Open>
@@ -152,7 +152,7 @@ function UserRow({
             onConfirm={() => deleteAdmin(id)}
           />
         </Modal.Window>
-      </Modal>
+      </Modal>*/}
     </Table.Row>
   );
 }

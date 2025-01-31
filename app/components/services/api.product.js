@@ -80,3 +80,14 @@ export const updatePassword = async ({ password, id }) => {
 
   return response;
 };
+
+export const updateImage = async ({ formdata, id }) => {
+  const response = await axios.post(
+    `${ApiUrl}/product/update-image/${id}`,
+    formdata,
+    {
+      withCredentials: true,
+    }
+  );
+  return response.data;
+};

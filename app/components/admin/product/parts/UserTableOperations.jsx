@@ -5,9 +5,11 @@ import { useUserContext } from "./UserContext";
 import CreateAdminForm from "@/app/components/features/admin/CreateAdminForm";
 import Modal from "@/app/components/ui/Modal";
 import Button from "@/app/components/ui/Button";
+import { useRouter } from "next/navigation";
 
 function UserTableOperations() {
   // const { filter, setFilter } = useUserContext();
+  const router = useRouter();
   return (
     <TableOperations>
       {/* <Filter
@@ -29,6 +31,10 @@ function UserTableOperations() {
           { value: "name-asc", label: "Sort by name (A - Z)" },
         ]}
       />
+
+      <Button onClick={() => router.push("/admin/products/add")}>
+        Add Product
+      </Button>
       {/* <Modal>
         <Modal.Open opens="department-form">
           <Button variation="primary" size="medium">

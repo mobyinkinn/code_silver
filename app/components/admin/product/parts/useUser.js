@@ -6,19 +6,20 @@ import {
   updateProduct as updateTheProduct,
   updatePassword as updateThePassword,
   createProduct as createTheProduct,
+  updateImage as updateTheImage,
   fetchProduct,
 } from "@/app/components/services/api.product";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
 export const useProduct = () => {
-  const { data, isLoading, error } = useQuery({
+  const { data, isPending, error } = useQuery({
     queryKey: ["Products"],
     queryFn: fetchAllProducts,
     staleTime: 5 * 60 * 1000,
   });
 
-  return { data, isLoading, error };
+  return { data, isPending, error };
 };
 
 export const useCurrentProduct = () => {
@@ -136,4 +137,22 @@ export const useCreateProduct = () => {
     },
   });
   return { createProduct, isCreating };
+};
+
+export const useUpdateImage = () => {
+  const queryClient = useQueryClient();
+
+  const { mutate: updateImage, isPending: isUpdatingImage } = useMutation({
+    mutationFn: updateTheImage,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["Departments"]);
+      toast.success("Department updated successfully!!!");
+    },
+    onError: (error) => {
+      console.error("Failed to update department: ", error);
+      toast.error("Failed to update department. Please try again.");
+    },
+  });
+
+  return { updateImage, isUpdatingImage };
 };

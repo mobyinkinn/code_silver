@@ -66,13 +66,14 @@ function CreateProductForm({ cabinToEdit = {}, onCloseModal }) {
 
   function onSubmit(data) {
     const file = typeof data.image === "string" ? data.image : data.image[0];
+    const tags = [data.tag];
 
     const formdata = new FormData();
     formdata.append("image", file);
     formdata.append("name", data.name);
     formdata.append("price", data.price);
     formdata.append("description", data.description);
-    formdata.append("tag", data.tag);
+    formdata.append("tag", tags);
     formdata.append("collectionId", "674e9b67f9272afb1dee1bbf");
     formdata.append("medias", file);
     formdata.append("weight", 0.3);
@@ -80,8 +81,8 @@ function CreateProductForm({ cabinToEdit = {}, onCloseModal }) {
 
     createProduct(formdata, {
       onSuccess: (data) => {
+        router.push("/admin/products");
         reset();
-        onCloseModal?.();
       },
     });
   }
@@ -175,7 +176,7 @@ function CreateProductForm({ cabinToEdit = {}, onCloseModal }) {
           variation="secondary"
           size="medium"
           type="reset"
-          onClick={() => router.push("/admin/varients")}
+          onClick={() => router.push("/admin/products")}
         >
           Cancel
         </Button>

@@ -19,6 +19,9 @@ import { HiEyeOff, HiPencil } from "react-icons/hi";
 import { useDeleteProduct } from "./useUser";
 // import { useBlockAdmin, useDeleteAdmin, useUnblockAdmin } from "./useUser";
 import EditAdminForm from "@/app/components/features/Admin/EditAdminForm";
+import Image from "next/image";
+import { IconButton } from "@/app/components/ui/Button";
+import { useRouter } from "next/navigation";
 // import { useNavigate } from "react-router-dom";
 // import { useCheckout } from "../check-in-out/useCheckout";
 // import useDeleteBooking from "./useDeleteBooking";
@@ -40,9 +43,11 @@ const Stacked = styled.div`
 `;
 
 function UserRow({
-  user: { _id: id, name, draft, description, price, reviews },
+  user: { _id: id, name, image, description, price, reviews },
 }) {
   const { deleteProduct, isDeleting } = useDeleteProduct();
+  const router = useRouter();
+
   //   const navigate = useNavigate();
   //   const { checkout, isCheckingOut } = useCheckout();
   //   const { deleteBooking, isDeleting } = useDeleteBooking();
@@ -80,8 +85,7 @@ function UserRow({
       </Stacked>
 
       <Stacked>
-        <span>Draft</span>
-        <span>{draft ? "Yes" : "No"}</span>
+        <Image src={image} alt={name} width={50} height={50} />
       </Stacked>
 
       <Stacked>
@@ -96,7 +100,7 @@ function UserRow({
 
       <Stacked>
         <span>Reviews</span>
-        <span>{reviews}</span>
+        <span>{reviews.toFixed(2)}</span>
       </Stacked>
 
       {/* <Stacked>
@@ -118,12 +122,19 @@ function UserRow({
             // onClick={handleToggleStatus}
             // disabled={isBlocking || isUnblocking}
           ></Menus.Button> */}
-          <Modal.Open opens="banner-form">
+          {/* <Modal.Open opens="banner-form">
             <Menus.Button icon={<HiPencil />} />
           </Modal.Open>
           <Modal.Window name="banner-form">
             <EditAdminForm id={id} />
-          </Modal.Window>
+          </Modal.Window> */}
+          <div style={{ position: "relative" }}>
+            <IconButton
+              onClick={() => router.push(`/admin/products/edit/${id}`)}
+            >
+              <HiPencil />
+            </IconButton>
+          </div>
           <Modal.Open opens="delete">
             <Menus.Button icon={<HiTrash />}></Menus.Button>
           </Modal.Open>

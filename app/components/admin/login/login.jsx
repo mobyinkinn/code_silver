@@ -5,7 +5,7 @@ import LoginForm from "../../features/authentication/LoginForm";
 import Logo from "../../ui/Logo";
 import Heading from "../../ui/Heading";
 
-import logo from "./parts/assets/logo.png";
+import logo from "../../ui/logo.png";
 
 const LoginLayout = styled.main`
   min-height: 100vh;
