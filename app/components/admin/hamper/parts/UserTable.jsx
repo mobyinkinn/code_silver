@@ -5,7 +5,7 @@ import Empty from "../../../ui/Empty";
 // import useUsers from "./useBookings";
 import Spinner from "../../../ui/Spinner";
 import Pagination from "../../../ui/Pagination";
-import { useCart } from "./useCart";
+import { useHamper } from "./useHamper";
 // import { useUserContext } from "./UserContext";
 
 const userDetails = [
@@ -16,32 +16,20 @@ const userDetails = [
 ];
 
 function UserTable() {
-  const { data, isLoading, error } = useCart();
+  const { data, isPending: isLoading, error } = useHamper();
   // const { filter } = useUserContext();
-  console.log(data);
 
   if (isLoading) return <Spinner />;
 
   let filteredUsers = data;
-  // if (filter !== "All") {
-  // filteredUsers = userDetails.filter(
-  // (el, i) => el.status.toLowerCase() === filter.toLowerCase()
-  // );
-  // }
-  //   const { bookings, isLoading, count } = useUsers();
 
-  // if (isLoading) return <Spinner />;
   if (!filteredUsers?.length) return <Empty resourceName="Admins" />;
   return (
     <Menus>
-      <Table columns="2fr 1fr 1fr 1fr 1fr 1fr 3.2rem">
+      <Table columns="1fr 1fr 3.2rem">
         <Table.Header>
-          <div>Address</div>
-          <div>Ordered On</div>
-          <div>ETA</div>
-          <div>Country Code</div>
+          <div>Name</div>
           <div>Price</div>
-          <div>Notes</div>
           <div></div>
         </Table.Header>
 

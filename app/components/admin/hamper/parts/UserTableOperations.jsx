@@ -4,12 +4,12 @@ import TableOperations from "../../../ui/TableOperations";
 import { useUserContext } from "./UserContext";
 import Modal from "@/app/components/ui/Modal";
 import Button from "@/app/components/ui/Button";
-import CreateCollectionForm from "@/app/components/features/collections/CreateCollectionForm";
+import CreateVarientForm from "@/app/components/features/varients/CreateVarientForm";
 import { useRouter } from "next/navigation";
 
 function UserTableOperations() {
   const router = useRouter();
-  // const { filter, setFilter } = useUserContext();
+
   return (
     <TableOperations>
       {/* <Filter
@@ -31,19 +31,19 @@ function UserTableOperations() {
           { value: "name-asc", label: "Sort by name (A - Z)" },
         ]}
       />
-      {/* <Button
-        onClick={() => router.push("/admin/collections/add")}
-        variation="primary"
-        size="medium"
-      >
-        Add Collection
-      </Button> */}
+
+      <Button onClick={() => router.push("/admin/hampers/add")}>
+        Add Hamper
+      </Button>
+
       {/* <Modal>
         <Modal.Open opens="department-form">
-         
+          <Button variation="primary" size="medium">
+            Add Varient
+          </Button>
         </Modal.Open>
         <Modal.Window name="department-form">
-          <CreateCollectionForm />
+          <CreateVarientForm />
         </Modal.Window>
       </Modal> */}
     </TableOperations>

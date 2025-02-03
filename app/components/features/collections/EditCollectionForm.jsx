@@ -20,6 +20,7 @@ import {
 import SpinnerMini from "../../ui/SpinnerMini";
 import Spinner from "../../ui/Spinner";
 import { useRouter } from "next/navigation";
+import { useCart, useUpdateCart } from "../../admin/cart/parts/useCart";
 
 const options = [
   { value: "admin", label: "Admin" },
@@ -43,11 +44,11 @@ const options = [
 ];
 
 function EditCollectionForm({ id }) {
-  const { data, isPending: isWorking } = useCollection();
+  const { data, isPending: isWorking } = useCart();
   const { updateImage, isUpdatingImage } = useUpdateImage();
   const router = useRouter();
 
-  const { updateCollection, isUpdating } = useUpdateCollection();
+  const { updateCart, isUpdating } = useUpdateCart();
   const [collectionData, setCollectionData] = useState({});
 
   useEffect(() => {
@@ -67,11 +68,12 @@ function EditCollectionForm({ id }) {
 
   async function onUpdateCollection(data) {
     const formdata = {
-      type: data.type,
-      title: data.title,
-      description: data.description,
+      address: data.address,
+      eta: data.eta,
+      countryCode: data.countryCode,
+      notes: data.notes,
     };
-    updateCollection({ formdata, id: data._id });
+    // updateCart({ formdata, id: data._id });
   }
 
   if (isWorking) {
@@ -86,57 +88,58 @@ function EditCollectionForm({ id }) {
     // onSubmit={handleSubmit(onSubmit, onError)}
     // type={onCloseModal ? "modal" : "regular"}
     >
-      <FormRow label="Title">
+      <FormRow label="Address">
         <Input
           disabled={isWorking}
           type="text"
-          value={collectionData?.title || ""}
-          id="title"
+          value={collectionData?.address || ""}
+          id="address"
           onChange={(e) => {
             const newVal = e.target.value;
-            setCollectionData((data) => ({ ...data, title: newVal }));
-            onUpdateCollection({ ...collectionData, title: newVal });
+            setCollectionData((data) => ({ ...data, address: newVal }));
+            onUpdateCollection({ ...collectionData, address: newVal });
           }}
         />
       </FormRow>
 
-      <FormRow label="Type">
+      <FormRow label="ETA">
         <Input
           disabled={isWorking}
           type="text"
-          value={collectionData.type || ""}
+          value={collectionData?.eta || ""}
           id="type"
           onChange={(e) => {
             const newVal = e.target.value;
-            setCollectionData((data) => ({ ...data, type: newVal }));
-            onUpdateCollection({ ...collectionData, type: newVal });
+            setCollectionData((data) => ({ ...data, eta: newVal }));
+            onUpdateCollection({ ...collectionData, eta: newVal });
           }}
         />
       </FormRow>
 
-      <FormRow label="Description">
+      <FormRow label="Country Code">
         <Input
           disabled={isWorking}
-          value={collectionData.description || ""}
+          value={collectionData?.countryCode || ""}
           type="text"
-          id="description"
-          placeholder="Type new password..."
+          id="countryCode"
           onChange={(e) => {
             const newVal = e.target.value;
-            setCollectionData((data) => ({ ...data, description: newVal }));
-            onUpdateCollection({ ...collectionData, description: newVal });
+            setCollectionData((data) => ({ ...data, countryCode: newVal }));
+            onUpdateCollection({ ...collectionData, countryCode: newVal });
           }}
         />
       </FormRow>
 
-      <FormRow label="Image">
-        <FileInput
-          id="file"
-          accept="image/*"
-          type="file"
+      <FormRow label="Notes">
+        <Input
+          disabled={isWorking}
+          value={collectionData?.notes || "None"}
+          type="text"
+          id="notes"
           onChange={(e) => {
-            const updatedValue = e.target.files;
-            onUpdateImage(updatedValue, id);
+            const newVal = e.target.value;
+            setCollectionData((data) => ({ ...data, notes: newVal }));
+            onUpdateCollection({ ...collectionData, notes: newVal });
           }}
         />
       </FormRow>
@@ -150,7 +153,7 @@ function EditCollectionForm({ id }) {
       >
         <Stack
           onClick={() => {
-            router.push("/admin/collections");
+            router.push("/admin/carts");
           }}
           sx={{
             border: "1px solid #333",

@@ -43,7 +43,17 @@ const Stacked = styled.div`
 `;
 
 function UserRow({
-  user: { _id: id, address, price, totalWt, eta, finalPrice, countryCode },
+  user: {
+    _id: id,
+    address,
+    createdAt,
+    price,
+    totalWt,
+    notes,
+    eta,
+    finalPrice,
+    countryCode,
+  },
 }) {
   const { deleteCart, isDeleting } = useDeleteCart();
   //   const navigate = useNavigate();
@@ -85,17 +95,28 @@ function UserRow({
       </Stacked>
 
       <Stacked>
+        <span>Ordered On</span>
+        <span>{createdAt.split("T")[0]}</span>
+      </Stacked>
+
+      <Stacked>
         <span>Eta</span>
         <span>{eta}</span>
       </Stacked>
 
       <Stacked>
-        {/* <Image src={image} alt={title} width={50} height={50} /> */}
+        <span>Country Code</span>
+        <span>{countryCode}</span>
       </Stacked>
 
       <Stacked>
-        <span>Country Code</span>
-        <span>{countryCode}</span>
+        <span>Final Price</span>
+        <span>{finalPrice}</span>
+      </Stacked>
+
+      <Stacked>
+        <span>Notes</span>
+        <span>{notes ? notes : "None"}</span>
       </Stacked>
 
       {/* <Stacked>
@@ -127,9 +148,7 @@ function UserRow({
           {/* <EditCartForm id={id} /> */}
           {/* </Modal.Window> */}
           <div style={{ position: "relative" }}>
-            <IconButton
-              onClick={() => router.push(`/admin/collections/edit/${id}`)}
-            >
+            <IconButton onClick={() => router.push(`/admin/carts/edit/${id}`)}>
               <HiPencil />
             </IconButton>
           </div>

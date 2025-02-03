@@ -1,49 +1,35 @@
 import {
-  blockCart as blockTheCart,
-  fetchAllCarts,
-  unblockCart as unblockTheCart,
-  deleteCart as deleteTheCart,
-  updateCart as updateTheCart,
+  blockHamper as blockTheHamper,
+  fetchAllHampers,
+  unblockHamper as unblockTheHamper,
+  deleteHamper as deleteTheHamper,
+  updateHamper as updateTheHamper,
   updatePassword as updateThePassword,
-  createCart as createTheCart,
+  createHamper as createTheHamper,
   updateImage as updateTheImage,
-  fetchCart,
-} from "@/app/components/services/api.cart";
+  fetchHamper,
+} from "@/app/components/services/api.hamper";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
-export const useCart = () => {
+export const useHamper = () => {
   const { data, isPending, error } = useQuery({
-    queryKey: ["Carts"],
-    queryFn: fetchAllCarts,
+    queryKey: ["Hampers"],
+    queryFn: fetchAllHampers,
     staleTime: 5 * 60 * 1000,
   });
 
   return { data, isPending, error };
 };
 
-export const useCurrentCart = () => {
-  const {
-    data: currCart,
-    isLoading: isFetching,
-    error,
-  } = useQuery({
-    queryKey: ["Cart"],
-    queryFn: fetchCart,
-    staleTime: 1 * 1000,
-  });
-
-  return { currCart, isFetching, error };
-};
-
-export const useBlockCart = () => {
+export const useBlockHamper = () => {
   const queryClient = useQueryClient();
 
-  const { mutate: blockCart, isLoading: isBlocking } = useMutation({
-    mutationFn: blockTheCart,
+  const { mutate: blockHamper, isLoading: isBlocking } = useMutation({
+    mutationFn: blockTheHamper,
     onSuccess: () => {
-      queryClient.invalidateQueries(["Carts"]);
-      toast.success("Cart blocked successfully!!!");
+      queryClient.invalidateQueries(["Hampers"]);
+      toast.success("Hamper blocked successfully!!!");
     },
     onError: (error) => {
       console.error("Failed to block admin: ", error);
@@ -51,17 +37,17 @@ export const useBlockCart = () => {
     },
   });
 
-  return { blockCart, isBlocking };
+  return { blockHamper, isBlocking };
 };
 
-export const useUnblockCart = () => {
+export const useUnblockHamper = () => {
   const queryClient = useQueryClient();
 
-  const { mutate: unblockCart, isLoading: isUnblocking } = useMutation({
-    mutationFn: unblockTheCart,
+  const { mutate: unblockHamper, isLoading: isUnblocking } = useMutation({
+    mutationFn: unblockTheHamper,
     onSuccess: () => {
-      queryClient.invalidateQueries(["Carts"]);
-      toast.success("Cart blocked successfully!!!");
+      queryClient.invalidateQueries(["Hampers"]);
+      toast.success("Hamper blocked successfully!!!");
     },
     onError: (error) => {
       console.error("Failed to block admin: ", error);
@@ -69,16 +55,16 @@ export const useUnblockCart = () => {
     },
   });
 
-  return { unblockCart, isUnblocking };
+  return { unblockHamper, isUnblocking };
 };
 
-export const useDeleteCart = () => {
+export const useDeleteHamper = () => {
   const queryClient = useQueryClient();
-  const { mutate: deleteCart, isLoading: isDeleting } = useMutation({
-    mutationFn: deleteTheCart,
+  const { mutate: deleteHamper, isLoading: isDeleting } = useMutation({
+    mutationFn: deleteTheHamper,
     onSuccess: () => {
-      queryClient.invalidateQueries(["Carts"]);
-      toast.success("Cart deleted successfully!!!");
+      queryClient.invalidateQueries(["Hampers"]);
+      toast.success("Hamper deleted successfully!!!");
     },
     onError: (error) => {
       console.error("Failed to delete admin: ", error);
@@ -86,16 +72,16 @@ export const useDeleteCart = () => {
     },
   });
 
-  return { deleteCart, isDeleting };
+  return { deleteHamper, isDeleting };
 };
 
-export const useUpdateCart = () => {
+export const useUpdateHamper = () => {
   const queryClient = useQueryClient();
-  const { mutate: updateCart, isPending: isUpdating } = useMutation({
-    mutationFn: updateTheCart,
+  const { mutate: updateHamper, isLoading: isUpdating } = useMutation({
+    mutationFn: updateTheHamper,
     onSuccess: () => {
-      queryClient.invalidateQueries(["Carts"]);
-      toast.success("Cart updated successfully!!!");
+      queryClient.invalidateQueries(["Hampers"]);
+      toast.success("Hamper updated successfully!!!");
     },
     onError: (error) => {
       console.error("Failed to update admin: ", error);
@@ -103,7 +89,7 @@ export const useUpdateCart = () => {
     },
   });
 
-  return { updateCart, isUpdating };
+  return { updateHamper, isUpdating };
 };
 
 export const useUpdatePassword = () => {
@@ -111,7 +97,7 @@ export const useUpdatePassword = () => {
   const { mutate: updatePassword, isLoading: isUpdating } = useMutation({
     mutationFn: updateThePassword,
     onSuccess: () => {
-      queryClient.invalidateQueries(["Carts"]);
+      queryClient.invalidateQueries(["Hampers"]);
       toast.success("Password updated successfully!!!");
     },
     onError: (error) => {
@@ -123,20 +109,20 @@ export const useUpdatePassword = () => {
   return { updatePassword, isUpdating };
 };
 
-export const useCreateCart = () => {
+export const useCreateHamper = () => {
   const queryClient = useQueryClient();
-  const { mutate: createCart, isLoading: isCreating } = useMutation({
-    mutationFn: createTheCart,
+  const { mutate: createHamper, isPending: isCreating } = useMutation({
+    mutationFn: createTheHamper,
     onSuccess: () => {
-      queryClient.invalidateQueries(["Carts"]);
-      toast.success("Cart created successfully!!!");
+      queryClient.invalidateQueries(["Hampers"]);
+      toast.success("Hamper created successfully!!!");
     },
     onError: (error) => {
       console.error("Failed to create admin: ", error);
       toast.error("Failed to create admin.");
     },
   });
-  return { createCart, isCreating };
+  return { createHamper, isCreating };
 };
 
 export const useUpdateImage = () => {
