@@ -118,7 +118,6 @@ export const useUpdatePassword = () => {
       toast.error("Failed to update password.");
     },
   });
-
   return { updatePassword, isUpdating };
 };
 
@@ -135,5 +134,6 @@ export const useCreateAdmin = () => {
       toast.error("Failed to create admin.");
     },
   });
+
   return { createAdmin, isCreating };
 };

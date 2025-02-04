@@ -18,6 +18,7 @@ const userDetails = [
 function UserTable() {
   const { data, isLoading, error } = useAdmin();
   // const { filter } = useUserContext();
+  console.log(data);
 
   if (isLoading) return <Spinner />;
 
@@ -33,10 +34,11 @@ function UserTable() {
   if (!filteredUsers.length) return <Empty resourceName="Admins" />;
   return (
     <Menus>
-      <Table columns="1.3fr 2.4fr 3.2rem">
+      <Table columns="0.7fr 1fr 2.4fr 3.2rem">
         <Table.Header>
           <div>Name</div>
           <div>Username</div>
+          <div>Menu</div>
           <div></div>
         </Table.Header>
 

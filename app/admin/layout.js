@@ -1,7 +1,11 @@
 "use client";
+import { useCurrentAdmin } from "../components/admin/admin/parts/useUser";
 import Header from "../components/ui/Header";
 import Sidebar from "../components/ui/Sidebar";
 import styled from "styled-components";
+import Spinner from "../components/ui/Spinner";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 const StyledAppLayout = styled.div`
   display: grid;
@@ -25,6 +29,15 @@ const Container = styled.div`
 `;
 
 export default function Layout({ children }) {
+  const { data, isFetching } = useCurrentAdmin();
+  const router = useRouter();
+
+  if (isFetching) return <Spinner />;
+
+  // if (!data) {
+  //   router.push("/admin-login");
+  // }
+
   return (
     <StyledAppLayout>
       <Header />

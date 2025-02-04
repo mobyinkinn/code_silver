@@ -58,13 +58,9 @@ export const createAdmin = async (formdata) => {
 };
 
 export const updateAdmin = async ({ formdata, id }) => {
-  const response = await axios.post(
-    `${ApiUrl}/admin/update-admin?id=${id}`,
-    formdata,
-    {
-      withCredentials: true,
-    }
-  );
+  const response = await axios.post(`${ApiUrl}/admin/update/${id}`, formdata, {
+    withCredentials: true,
+  });
 
   return response;
 };

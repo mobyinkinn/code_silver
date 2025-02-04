@@ -115,6 +115,18 @@ function MainNav() {
             <span>Comments</span>
           </StyledNavLink>
         </li>
+        <li>
+          <StyledNavLink href="/admin/hampers">
+            <HiOutlineLogout />
+            <span>Hampers</span>
+          </StyledNavLink>
+        </li>
+        <li>
+          <StyledNavLink href="/admin/carts">
+            <HiOutlineLogout />
+            <span>Cart</span>
+          </StyledNavLink>
+        </li>
       </NavList>
     </nav>
   );

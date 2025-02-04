@@ -19,6 +19,8 @@ import { HiEyeOff, HiPencil } from "react-icons/hi";
 import { useDeleteAdmin } from "./useUser";
 // import { useBlockAdmin, useDeleteAdmin, useUnblockAdmin } from "./useUser";
 import EditAdminForm from "@/app/components/features/Admin/EditAdminForm";
+import { IconButton } from "@/app/components/ui/Button";
+import { useRouter } from "next/navigation";
 // import { useNavigate } from "react-router-dom";
 // import { useCheckout } from "../check-in-out/useCheckout";
 // import useDeleteBooking from "./useDeleteBooking";
@@ -39,8 +41,9 @@ const Stacked = styled.div`
   }
 `;
 
-function UserRow({ user: { _id: id, email, username } }) {
+function UserRow({ user: { _id: id, menu, email, username } }) {
   const { deleteAdmin, isDeleting } = useDeleteAdmin();
+  const router = useRouter();
   //   const navigate = useNavigate();
   //   const { checkout, isCheckingOut } = useCheckout();
   //   const { deleteBooking, isDeleting } = useDeleteBooking();
@@ -82,13 +85,13 @@ function UserRow({ user: { _id: id, email, username } }) {
         <span>{email}</span>
       </Stacked>
 
-      {/* <Stacked>
+      <Stacked>
         <span>
           {menu.map((el, i) => (
             <span key={i}> {el + " "} </span>
           ))}
         </span>
-      </Stacked> */}
+      </Stacked>
 
       {/* <Tag type={statusToTagName[status]}>{status.replace("-", " ")}</Tag> */}
 
@@ -101,12 +104,19 @@ function UserRow({ user: { _id: id, email, username } }) {
             // onClick={handleToggleStatus}
             // disabled={isBlocking || isUnblocking}
           ></Menus.Button> */}
-          <Modal.Open opens="banner-form">
+          {/* <Modal.Open opens="banner-form">
             <Menus.Button icon={<HiPencil />} />
           </Modal.Open>
           <Modal.Window name="banner-form">
             <EditAdminForm id={id} />
-          </Modal.Window>
+          </Modal.Window> */}
+          <div style={{ position: "relative" }}>
+            <IconButton
+              onClick={() => router.push(`/admin/adminuser/edit/${id}`)}
+            >
+              <HiPencil />
+            </IconButton>
+          </div>
           <Modal.Open opens="delete">
             <Menus.Button icon={<HiTrash />}></Menus.Button>
           </Modal.Open>

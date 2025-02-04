@@ -2,8 +2,9 @@ import styled from "styled-components";
 import ButtonIcon from "./ButtonIcon";
 import { HiOutlineUser } from "react-icons/hi2";
 import { HiOutlineLogout } from "react-icons/hi";
+import { adminLogout } from "../services/api.admin";
 // import { logout } from "../services/apiAuth";
-// import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 const StyledHeaderMenu = styled.ul`
   display: flex;
@@ -14,11 +15,12 @@ const Styledli = styled.li`
 `;
 
 function HeaderMenu() {
-  // const router = useRouter();
+  const router = useRouter();
 
   const onLogout = () => {
     // logout();
-    // router.push("/admin/login");
+    adminLogout();
+    router.push("/admin-login");
   };
 
   return (

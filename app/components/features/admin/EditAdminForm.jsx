@@ -1,3 +1,4 @@
+"use client";
 import { useForm } from "react-hook-form";
 
 import Input from "../../ui/Input";
@@ -8,60 +9,75 @@ import Textarea from "../../ui/Textarea";
 import FormRow from "../../ui/FormRow";
 import { Stack } from "@mui/material";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   useAdmin,
   useUpdateAdmin,
   useUpdatePassword,
 } from "../../admin/userManagement/parts/useUser";
 import Select from "react-select";
+import Spinner from "../../ui/Spinner";
 
 const options = [
   { value: "admin", label: "Admin" },
-  { value: "banners", label: "Banners" },
-  { value: "departments", label: "Departments" },
-  { value: "doctors", label: "Doctors" },
-  { value: "academics", label: "Academics" },
-  { value: "downloadables", label: "Downloadables" },
-  { value: "notices", label: "Notices" },
-  { value: "tpa", label: "Tpa" },
-  { value: "events", label: "Events" },
+  { value: "customers", label: "customers" },
+  { value: "products", label: "products" },
+  { value: "collections", label: "collections" },
+  { value: "orders", label: "orders" },
+  { value: "discounts", label: "discounts" },
+  { value: "varients", label: "varients" },
+  { value: "blogs", label: "blogs" },
+  { value: "carts", label: "carts" },
+  { value: "reviews", label: "reviews" },
   { value: "blogs", label: "Blogs" },
-  { value: "testimonials", label: "Testimonials" },
-  { value: "awards", label: "Awards" },
-  { value: "enquiries", label: "Enquiries" },
-  { value: "videos", label: "Videos" },
-  { value: "openings", label: "Openings" },
-  { value: "careers", label: "careers" },
-  { value: "plans", label: "Health Plans" },
-  { value: "tips", label: "Health Tips" },
+  { value: "comments", label: "comments" },
+  { value: "hampers", label: "hampers" },
 ];
 
-function EditAdminForm({ onCloseModal, id }) {
-  const { data, isLoading: isWorking } = useAdmin();
-  const filteredData = data.filter((el) => el._id === id);
+function EditAdminForm({ id }) {
+  const { data, isPending: isWorking } = useAdmin();
   const { register, handleSubmit, reset, getValues, formState } = useForm({
     defaultValues: {},
   });
   const { updateAdmin, isUpdating } = useUpdateAdmin();
   const { updatePassword, isUpdating: isUpdatingPassword } =
     useUpdatePassword();
-  const [adminData, setAdminData] = useState(filteredData[0]);
+  const [adminData, setAdminData] = useState({});
   const [password, setPassword] = useState("");
+  const [defaultOptions, setDefaultOptions] = useState([]);
 
-  const { errors } = formState;
+  useEffect(() => {
+    const filteredData = data?.filter((el) => el._id === id);
+    if (filteredData) {
+      setAdminData(filteredData[0]);
+    }
+  }, [isWorking]);
 
-  function calculateOptions() {
+  useEffect(() => {
     const newOptions = [];
-
     for (let i = 0; i < options.length; i++) {
-      if (adminData.menu.includes(options[i].value)) {
+      if (adminData?.menu?.includes(options[i].value)) {
+        console.log("dfs");
         newOptions.push(options[i]);
       }
     }
+    setDefaultOptions(newOptions);
+  }, [adminData]);
 
-    return newOptions;
-  }
+  console.log(defaultOptions);
+  const { errors } = formState;
+
+  // function calculateOptions() {
+  // const newOptions = [];
+
+  // for (let i = 0; i < options.length; i++) {
+  //   if (adminData?.menu.includes(options[i].value)) {
+  //     newOptions.push(options[i]);
+  //   }
+  // }
+
+  // return newOptions;
+  // }
 
   function handleMenu(e) {
     const newArr = [];
@@ -74,7 +90,7 @@ function EditAdminForm({ onCloseModal, id }) {
   }
 
   function onUpdatePassword(password, id) {
-    updatePassword({ password, id });
+    // updatePassword({ password, id });
   }
 
   async function onUpdateDepartment(formdata, id) {
@@ -82,16 +98,20 @@ function EditAdminForm({ onCloseModal, id }) {
   }
 
   function onError(errors) {}
+
+  if (defaultOptions.length === 0) {
+    return <Spinner />;
+  }
+
   return (
     <Form
-      // onSubmit={handleSubmit(onSubmit, onError)}
-      type={onCloseModal ? "modal" : "regular"}
+    // onSubmit={handleSubmit(onSubmit, onError)}
     >
       <FormRow label="Username" error={errors?.page?.message}>
         <Input
           disabled={isWorking}
           type="text"
-          value={adminData.username}
+          value={adminData?.username || ""}
           id="username"
           {...register("username", {
             required: "This field is required",
@@ -108,7 +128,7 @@ function EditAdminForm({ onCloseModal, id }) {
         <Input
           disabled={isWorking}
           type="email"
-          value={adminData.email}
+          value={adminData?.email || ""}
           id="email"
           {...register("email", {
             required: "This field is required",
@@ -121,27 +141,9 @@ function EditAdminForm({ onCloseModal, id }) {
         />
       </FormRow>
 
-      <FormRow label="Name" error={errors?.page?.message}>
-        <Input
-          disabled={isWorking}
-          value={adminData.name}
-          type="name"
-          id="name"
-          {...register("name", {
-            required: "This field is required",
-          })}
-          onChange={(e) => {
-            const newVal = e.target.value;
-            setAdminData((data) => ({ ...data, name: newVal }));
-            onUpdateDepartment({ ...adminData, name: newVal }, id);
-          }}
-        />
-      </FormRow>
-
       <FormRow label="Password" error={errors?.page?.message}>
         <Input
           disabled={isWorking}
-          value={password}
           type="password"
           id="password"
           placeholder="Type new password..."
@@ -158,7 +160,8 @@ function EditAdminForm({ onCloseModal, id }) {
 
       <FormRow label="Permissions" error={errors?.page?.message}>
         <Select
-          defaultValue={() => calculateOptions()}
+          // defaultValue={() => calculateOptions()}
+          defaultValue={() => defaultOptions}
           isMulti
           name="colors"
           options={options}
@@ -169,6 +172,7 @@ function EditAdminForm({ onCloseModal, id }) {
           }}
         />
       </FormRow>
+
       <Stack
         direction="row"
         sx={{

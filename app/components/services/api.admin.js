@@ -76,3 +76,9 @@ export const updatePassword = async ({ password, id }) => {
 
   return response;
 };
+
+export const adminLogout = async () => {
+  const response = await axios.get(`${ApiUrl}/admin/logout`, {
+    withCredentials: true,
+  });
+};

@@ -1,5 +1,6 @@
-import { useForm } from "react-hook-form";
+"use client";
 
+import { useForm } from "react-hook-form";
 import Input from "../../ui/Input";
 import Form from "../../ui/Form";
 import Button from "../../ui/Button";
@@ -14,29 +15,26 @@ import SpinnerMini from "../../ui/SpinnerMini";
 import { createAdmin } from "../../services/api.User";
 import Select from "react-select";
 import { useState } from "react";
+import { useCreateAdmin } from "../../admin/admin/parts/useUser";
+import { useRouter } from "next/navigation";
 
 const options = [
   { value: "admin", label: "Admin" },
-  { value: "banners", label: "Banners" },
-  { value: "departments", label: "Departments" },
-  { value: "doctors", label: "Doctors" },
-  { value: "academics", label: "Academics" },
-  { value: "downloadables", label: "Downloadables" },
-  { value: "notices", label: "Notices" },
-  { value: "tpa", label: "Tpa" },
-  { value: "events", label: "Events" },
+  { value: "customers", label: "customers" },
+  { value: "products", label: "products" },
+  { value: "collections", label: "collections" },
+  { value: "orders", label: "orders" },
+  { value: "discounts", label: "discounts" },
+  { value: "varients", label: "varients" },
+  { value: "blogs", label: "blogs" },
+  { value: "carts", label: "carts" },
+  { value: "reviews", label: "reviews" },
   { value: "blogs", label: "Blogs" },
-  { value: "testimonials", label: "Testimonials" },
-  { value: "awards", label: "Awards" },
-  { value: "enquiries", label: "Enquiries" },
-  { value: "videos", label: "Videos" },
-  { value: "openings", label: "Openings" },
-  { value: "careers", label: "careers" },
-  { value: "plans", label: "Health Plans" },
-  { value: "tips", label: "Health Tips" },
+  { value: "comments", label: "comments" },
+  { value: "hampers", label: "hampers" },
 ];
 
-function CreateAdminForm({ cabinToEdit = {}, onCloseModal }) {
+function CreateAdminForm({ cabinToEdit = {} }) {
   //   const { id: editId, ...editValues } = cabinToEdit;
   //   const isEditSession = Boolean(editId);
 
@@ -45,6 +43,7 @@ function CreateAdminForm({ cabinToEdit = {}, onCloseModal }) {
     defaultValues: {},
   });
   const { errors } = formState;
+  const router = useRouter();
 
   //   const { isEditing, editCabin } = useEditCabin();
   const [menu, setMenu] = useState([]);
@@ -64,24 +63,22 @@ function CreateAdminForm({ cabinToEdit = {}, onCloseModal }) {
       username: data.username,
       email: data.email,
       password: data.password,
+      menu: menu,
     };
-    console.log("Department formdata: ", formdata);
 
     createAdmin(formdata, {
       onSuccess: (formdata) => {
         reset();
-        onCloseModal();
+        router.push("/admin/adminuser");
       },
     });
   }
-  function onError(errors) {
-    // console.log(errors);
-  }
+
+  function onError(errors) {}
   return (
     <Form
       style={{ overflow: "visible" }}
       onSubmit={handleSubmit(onSubmit, onError)}
-      type={onCloseModal ? "modal" : "regular"}
     >
       <FormRow label="Username" error={errors?.page?.message}>
         <Input
@@ -127,7 +124,7 @@ function CreateAdminForm({ cabinToEdit = {}, onCloseModal }) {
         />
       </FormRow>
 
-      {/* <FormRow label="Permissions" error={errors?.page?.message}>
+      <FormRow label="Permissions" error={errors?.page?.message}>
         <Select
           isMulti
           name="colors"
@@ -138,7 +135,7 @@ function CreateAdminForm({ cabinToEdit = {}, onCloseModal }) {
             handleMenu(e);
           }}
         />
-      </FormRow> */}
+      </FormRow>
 
       <Stack
         direction="row"
@@ -148,14 +145,14 @@ function CreateAdminForm({ cabinToEdit = {}, onCloseModal }) {
         }}
       >
         <Button
+          onClick={() => router.push("/admin/adminuser")}
           variation="secondary"
           type="reset"
-          onClick={() => onCloseModal?.()}
         >
           Cancel
         </Button>
         <Button disabled={isWorking}>
-          {isWorking ? <SpinnerMini /> : "Create new banner"}
+          {isWorking ? <SpinnerMini /> : "Create new Admin"}
         </Button>
       </Stack>
     </Form>
