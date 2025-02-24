@@ -43,7 +43,7 @@ const Stacked = styled.div`
 `;
 
 function UserRow({
-  user: { _id: id, name, image, description, price, reviews },
+  user: { _id: id, name, image, description, price, reviews, draft },
 }) {
   const { deleteProduct, isDeleting } = useDeleteProduct();
   const router = useRouter();
@@ -80,27 +80,23 @@ function UserRow({
   return (
     <Table.Row>
       <Stacked>
-        <span>Name</span>
         <span>{name}</span>
       </Stacked>
 
       <Stacked>
-        <Image src={image} alt={name} width={50} height={50} />
+        <span>{draft ? "Yes" : "No"}</span>
       </Stacked>
 
       <Stacked>
-        <span>Description</span>
         <span>{description}</span>
       </Stacked>
 
       <Stacked>
-        <span>Price</span>
         <span>{price}</span>
       </Stacked>
 
       <Stacked>
-        <span>Reviews</span>
-        <span>{reviews.toFixed(2)}</span>
+        <span>{reviews}</span>
       </Stacked>
 
       {/* <Stacked>

@@ -34,7 +34,7 @@ function UserTable() {
   if (!filteredUsers?.length) return <Empty resourceName="Admins" />;
   return (
     <Menus>
-      <Table columns="1fr 2fr 1fr 1fr 1fr 1fr 1fr 1fr">
+      <Table columns="1.3fr 3fr 2fr 2fr 2fr 2fr 1fr 1.4fr 4.9rem">
         <Table.Header>
           <div>Name</div>
           <div>Email</div>
@@ -44,7 +44,7 @@ function UserTable() {
           <div>Contact</div>
           <div>Country</div>
           <div>Total Amount</div>
-          <div></div>
+          <div>Action</div>
         </Table.Header>
 
         <Table.Body

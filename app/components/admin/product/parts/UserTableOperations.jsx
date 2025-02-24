@@ -22,7 +22,6 @@ function UserTableOperations() {
           { value: "Inactive", label: "Inactive" },
         ]}
       /> */}
-
       <SortBy
         options={[
           { value: "startDate-desc", label: "Sort by date (recent first)" },
@@ -31,8 +30,13 @@ function UserTableOperations() {
           { value: "name-asc", label: "Sort by name (A - Z)" },
         ]}
       />
-
-      <Button onClick={() => router.push("/admin/products/add")}>
+      <Button variation="primary" size="medium">
+        Export
+      </Button>
+      <Button variation="primary" size="medium">
+        Import
+      </Button>
+      <Button variation="primary" size="medium">
         Add Product
       </Button>
       {/* <Modal>

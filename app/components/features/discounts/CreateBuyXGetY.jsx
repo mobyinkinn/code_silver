@@ -19,6 +19,7 @@ import { useState } from "react";
 import { useCreateAdmin } from "../../admin/admin/parts/useUser";
 import { useRouter } from "next/navigation";
 import { useCreateBuyXGetYCode } from "./useBuyXGetYCode";
+import { useCreateDiscount } from "../../admin/discount/parts/useDiscount";
 
 const options = [
   { value: "admin", label: "Admin" },
@@ -41,7 +42,7 @@ const options = [
   { value: "tips", label: "Health Tips" },
 ];
 
-export default function CreateBuyXGetY() {
+export default function CreateBuyXGetY({type}) {
   const [isCode, setIsCode] = useState(true);
 
   return (
@@ -79,12 +80,12 @@ export default function CreateBuyXGetY() {
           Auto
         </Typography>
       </Stack>
-      {isCode ? <Code /> : <Auto />}
+      {isCode ? <Code type = {type}/> : <Auto />}
     </Stack>
   );
 }
 
-function Code() {
+function Code({type}) {
   const router = useRouter();
   const { register, handleSubmit, reset, getValues, formState } = useForm({
     defaultValues: {},
@@ -93,31 +94,82 @@ function Code() {
 
   // const { isCreating, createAdmin } = useCreateAdmin();
   const { isCreating, createBuyXGetYCode } = useCreateBuyXGetYCode();
+  const { createDiscount } = useCreateDiscount();
+
   const isWorking = isCreating;
 
-  function onSubmit(data) {
-    const formdata = {
-      ...data,
-      customerBuysQnt: Number(data.customerBuysQnt),
-      customerGetQnt: Number(data.customerGetQnt),
-      usesPerOrder: Number(data.usesPerOrder),
-      discountValue: 2,
-      customersEligible: [],
-      combinations: "sdf",
-      discountValueType: "abc",
-      appliedTo: "674e96c0c912c9ead9560eb5",
-      anyItemFrom: "674e96c0c912c9ead9560eb5",
-    };
+  // function onSubmit(data) {
+  //   const formdata = {
+  //     ...data,
+  //     customerBuysQnt: Number(data.customerBuysQnt),
+  //     customerGetQnt: Number(data.customerGetQnt),
+  //     usesPerOrder: Number(data.usesPerOrder),
+  //     discountValue: 2,
+  //     customersEligible: [],
+  //     combinations: "sdf",
+  //     discountValueType: "abc",
+  //     appliedTo: "674e96c0c912c9ead9560eb5",
+  //     anyItemFrom: "674e96c0c912c9ead9560eb5",
+  //   };
 
-    console.log(formdata);
+  //   console.log(formdata);
 
-    createBuyXGetYCode(formdata, {
-      onSuccess: (formdata) => {
-        reset();
-        router.push("/admin/discounts");
-      },
-    });
-  }
+  //   createBuyXGetYCode(formdata, {
+  //     onSuccess: (formdata) => {
+  //       reset();
+  //       router.push("/admin/discounts");
+  //     },
+  //   });
+  // }
+function onSubmit(data) {
+  const formdata = {
+    ...data,
+    customerBuysQnt: Number(data.customerBuysQnt),
+    customerGetQnt: Number(data.customerGetQnt),
+    usesPerOrder: Number(data.usesPerOrder),
+    discountValue: 2,
+    customersEligible: [],
+    combinations: "sdf",
+    discountValueType: "abc",
+    appliedTo: "674e96c0c912c9ead9560eb5",
+    anyItemFrom: "674e96c0c912c9ead9560eb5",
+  };
+
+  console.log("Submitting first API:", formdata);
+
+  // First API call (Buy X Get Y)
+  createBuyXGetYCode(formdata, {
+    onSuccess: (response) => {
+      console.log("First API Response:", data);
+      const discountPayload = {
+        typeId: response.data.message?._id, // Adjust according to response
+        typeName: type,
+        name: data?.code,
+        discountCode: data?.code || "GeneratedCode",
+        description: "Buy X Get Y Discount",
+        status: true,
+        method: "Auto",
+        useFrequency: Number(data.usesPerOrder) || 1,
+      };
+
+      console.log("Submitting second API:", discountPayload);
+
+      // Second API call (Discounts)
+      createDiscount(discountPayload, {
+        onSuccess: () => {
+          reset();
+          router.push("/admin/discounts");
+        },
+        onError: (error) => {
+          console.error("Error creating discount:", error);
+        },
+      });
+    },
+    onError: (error) => {
+      console.error("Error creating BuyXGetY code:", error);
+    },
+  });
+}
 
   function onError(errors) {
     // console.log(errors);
@@ -217,7 +269,7 @@ function Code() {
           variation="secondary"
           size="medium"
           type="reset"
-          onClick={() => router.push("/admin/collections")}
+          onClick={() => router.push("/admin/discounts/add")}
         >
           Cancel
         </Button>

@@ -40,7 +40,7 @@ function UserTable() {
           <div>Description</div>
           <div>Price</div>
           <div>Reviews</div>
-          <div></div>
+          <div>Action</div>
         </Table.Header>
 
         <Table.Body

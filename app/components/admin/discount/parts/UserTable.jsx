@@ -40,7 +40,7 @@ function UserTable() {
           <div>Use Frequency</div>
           <div>Description</div>
           <div>Status</div>
-          <div></div>
+          <div>Action</div>
         </Table.Header>
 
         <Table.Body

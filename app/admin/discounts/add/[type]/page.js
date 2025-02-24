@@ -4,7 +4,7 @@ export default async function ({ params }) {
   const { type } = await params;
 
   if (type === "buyXGetY") {
-    return <CreateBuyXGetY />;
+    return <CreateBuyXGetY type={type}/>;
   }
   return <div>{type}</div>;
 }
